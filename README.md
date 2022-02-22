@@ -1,1 +1,1 @@
-# Project-8-Use-an-API-to-Create-an-Employee-Directory
+# <img src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/24/000000/external-treehouse-learn-web-design-coding-and-much-more-logo-color-tal-revivo.png"/> Team Treehouse - Employee Directory
