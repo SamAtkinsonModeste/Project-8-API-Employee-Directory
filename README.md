@@ -34,9 +34,9 @@ Users should be able to:
 
 - A mobile-first approach is utilized using min-width properties for media queries.
 - Use CSS grid and Flexbox to lay out the main elements (header, search input, main content) on the page.
-- Includes search functionality for empolyees.
 - Modal to view all contact details for an empolyee
 
+#### Exceeds Requiremnts
 - **Exceeds**: Add a way to filter the directory by name. To do this, 	I will need to request a random user nationality that will only return data in the English alphabet. 
 - **Exceeds**: Add a way to move back and forth between employee detail windows when the modal window is open.
 
