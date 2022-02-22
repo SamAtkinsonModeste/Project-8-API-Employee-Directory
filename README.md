@@ -3,7 +3,7 @@
 This is my eighth project for the [Front End Web Development Techdegree at Treehouse](https://teamtreehouse.com/techdegree/front-end-web-development).
 
 ### Description
-Communicating with an API to build a prototype for a company of a employee directory of employees, so they can share contact information with each other. 
+Communicating with an API to build a prototype for a company of an employee directory of employees to share contact information.
 
 Communicating with APIs allows you to work with microservices and with vast databases to build useful tools and relevant information quickly and easily.
 
@@ -23,6 +23,12 @@ Communicating with APIs allows you to work with microservices and with vast data
 ## Overview
   
 ### About this project
+
+**Using photos and information that the API provides. I will display 12 users, along with some basic information:**
+- Image
+- First and Last Name
+- Email
+- City
 
 Users should be able to:
 
