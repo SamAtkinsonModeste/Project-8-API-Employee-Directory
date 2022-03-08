@@ -1,0 +1,284 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+  font: normal 1em/1.5 "Raleway", sans-serif;
+}
+
+/*************************
+BG DIV & OVERLAY
+*************************/
+.overlay,
+.bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    padding-right: 1200px;
+    background-image: url('../img/bg-red-blk-hex.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: -1;
+
+}
+
+#overlay {
+    display: none;
+    background: rgb(0,0,0);
+    padding: 0;
+    z-index: 10;
+}
+
+img {
+    width: 100%;
+    border-radius: 100%;
+    
+}
+
+/*******************
+CONTAINERS
+********************/
+
+header{
+    position: fixed;
+    top:0;
+    z-index: 8;
+    height: 150px;
+    width: 100%;
+    padding: 1em;
+    background: #000;
+    border-bottom: 3px #000 solid;
+    box-shadow: 0 1px 6px rgb(104, 97, 97);
+
+}
+
+
+
+.inner-header,
+main,
+#employees-grid {
+    width: 99%;
+    max-width: 1400px;
+}
+
+.inner-header {
+    margin: 0 auto;
+    max-width: 1500px;
+}
+
+main,
+#employees-grid {
+    margin: 175px auto 0;
+}
+
+main {
+    border: solid 2px #f00;
+    background: rgba(0,0,0, .5);
+}
+
+#employees-grid {
+    margin: 0 auto 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    align-items: center;
+
+
+}
+
+.search {
+    width: 250px;
+    margin: 0 auto;
+    padding: 0.550em;
+    /* border: solid red 2px; */
+  }
+
+  .employee {
+    display: flex;
+    justify-content: space-around;
+    height: 150px;
+    margin:0.650em 0.40em;
+    background: rgba(0,0,0, .8);
+    border: solid 2px rgb(90, 88, 88);
+    /* border: solid rgb(0, 255, 0) 2px; */
+
+}
+
+.image {
+    width: 100px;
+    height:100px;
+    border-radius: 100%;
+    background: linear-gradient(to left, #f00, #0a0402);
+    align-self: center;
+    margin: auto;
+}
+
+.image img {
+    width: 90px;
+    height: 90px;
+    display: block;
+    margin: 5px;
+}
+
+.details {
+    width: 65%;
+    padding-left: 10px;
+    margin-left: auto;
+}
+
+
+
+/**************************
+ HEADINGS & TEXT
+***************************/
+.heading,
+.awesome {
+    font-size: 0.800em;
+    text-shadow: 1px 1px 1px #f00;
+    letter-spacing: 0.09em;
+    line-height: 2em;
+    text-align: center;;
+}
+
+
+
+.awesome {
+    font-family: 'Bad Script', cursive;
+    letter-spacing: 2px;
+   
+}
+
+.heading,
+h2 {
+    font-family: 'Raleway Dots', cursive;
+}
+
+
+
+
+
+.awesome,
+.heading,
+h2,
+p,
+#employee-search {
+    color: #fff;
+}
+
+.name,
+.state {
+    font-size: 1rem;
+}
+
+.name{
+    margin: 28px 0 0 3px;
+}
+
+
+.email{
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 0.05rem;
+    font-size:0.625rem;
+    line-height: 5px;
+}
+
+
+
+.state {
+    font-family:  'Advent Pro', sans-serif;
+    letter-spacing: 0.2em;
+    margin-top:3px;
+    margin-bottom:  10px;
+   
+}
+
+/***************************
+FORM ELEMENTS
+**************************/
+#employee-search {
+    background: #000;
+    border-radius: 3px;
+    padding:1em;
+    outline: none;
+  
+}
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+@media (min-width: 768px)  {
+    .bg {
+        padding-right: 1500px;
+    }
+
+    header {
+        height: 115px;
+    }
+
+   .inner-header {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       height: 115px;
+       /* border: solid 2px rgb(238, 238, 10); */
+   }
+
+   
+
+   .search {
+       margin: 0;
+   }
+
+   .awesome {
+       font-size: 1.4rem;
+   }
+
+   .name {
+    font-size: 1.3rem;
+}
+  .email {
+      font-size: 0.750rem;
+  }
+}
+
+@media (min-width: 1024px)  {
+    .bg {
+        padding-right: 1800px;
+    }
+
+    .awesome {
+        font-size: 2rem;
+    }
+
+    #employees-grid {
+        grid-template-columns: repeat(3, minmax(250px, 1fr));
+        gap:10px;
+    }
+
+
+   
+}
+
+@media (min-width: 1440px)  {
+    .bg {
+        padding-right: 0;
+    }
+
+    .awesome {
+        font-size: 2.5rem;
+    }
+   
+}
