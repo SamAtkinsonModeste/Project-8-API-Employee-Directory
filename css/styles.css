@@ -90,8 +90,8 @@ main {
 
 .search {
     width: 250px;
+    max-width: 350px;
     margin: 0 auto;
-    padding: 0.550em;
     /* border: solid red 2px; */
   }
 
@@ -198,11 +198,53 @@ p,
 FORM ELEMENTS
 **************************/
 #employee-search {
-    background: #000;
+    position: relative;
+    top: 24px;
+    width: 75%;
+    background: rgb(27, 27, 27);
     border-radius: 3px;
     padding:1em;
     outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    /* border: solid green 1px; */
+    border-bottom: 1px solid #f00;
+    transition: width 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   
+}
+
+label {
+    display: block;
+   /* text-align:left; */
+   /* z-index: 11; */
+   cursor: pointer;
+   margin-left: 4px;
+   color: #fff;
+   transform: translateY(-15px);
+   transition: text-shadow,font-size, transform 1s ease-in-out;
+}
+
+
+
+
+
+
+
+
+#employee-search:focus{
+    width: 100%;
+}
+
+#employee-search:active{
+    background: red;
+}
+
+#employee-search:focus ~ label {
+    transform: translateY(-65px);
+    font-size: 1.2em;
+    text-shadow: 1px 1px 1px #f00;
+
 }
 
 
@@ -216,7 +258,9 @@ FORM ELEMENTS
 
 
 
-
+/**********************************
+MEDIA QUERY 768PX
+***********************************/
 
 
 @media (min-width: 768px)  {
@@ -232,7 +276,6 @@ FORM ELEMENTS
        display: flex;
        justify-content: space-between;
        align-items: center;
-       height: 115px;
        /* border: solid 2px rgb(238, 238, 10); */
    }
 
@@ -252,7 +295,21 @@ FORM ELEMENTS
   .email {
       font-size: 0.750rem;
   }
+
+  #employee-search {
+    top:13px;
 }
+
+label {
+    transform: translateY(-24px);
+}
+}
+
+
+/**********************************
+MEDIA QUERY 1024PX
+***********************************/
+
 
 @media (min-width: 1024px)  {
     .bg {
@@ -268,9 +325,16 @@ FORM ELEMENTS
         gap:10px;
     }
 
+   
+
 
    
 }
+
+
+/**********************************
+MEDIA QUERY 1440PX
+***********************************/
 
 @media (min-width: 1440px)  {
     .bg {
