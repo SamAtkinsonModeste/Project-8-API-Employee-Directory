@@ -88,6 +88,7 @@ main,
 main {
     border: solid 2px var( --accent-color);
     background: rgba(var(--primary-black-color), .5);
+    padding: 1em;
 }
 
 #employees-grid {
@@ -101,7 +102,7 @@ main {
 
 .search {
     width: 250px;
-    max-width: 350px;
+    max-width: 500px;
     margin: 0 auto;
     /* border: solid red 2px; */
   }
@@ -184,7 +185,7 @@ HOVER STATE FOR EMPLYEES
 ***************************/
 .heading,
 .awesome {
-    font-size: 0.800em;
+    font-size: 0.829em;
     text-shadow: 1px 1px 1px var( --accent-color);
     letter-spacing: 0.09em;
     line-height: 2em;
@@ -259,7 +260,7 @@ FORM ELEMENTS
     cursor: pointer;
     /* border: solid green 1px; */
     border-bottom: 1px solid var( --accent-color);
-    transition: width 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transition: width 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   
 }
 
@@ -269,7 +270,7 @@ label {
    margin-left: 4px;
    color: var(  --text-color);
    transform: translateY(-15px);
-   transition: text-shadow, font-size, transform 1s ease-in-out;
+   transition: text-shadow, font-size, transform .2s ease-in-out;
 }
 
 
@@ -341,6 +342,7 @@ MEDIA QUERY 768PX
 }
   .email {
       font-size: 0.750rem;
+      letter-spacing: 0.03rem;
   }
 
   /************************
@@ -376,13 +378,20 @@ MEDIA QUERY 1024PX
     }
 
     .awesome {
-        font-size: 2rem;
+        font-size: 1.6rem;
     }
 
     #employees-grid {
         grid-template-columns: repeat(3, minmax(250px, 1fr));
         gap:10px;
     }
+
+    .search {
+        
+        width: 400px;
+        margin: 0 auto;
+        /* border: solid red 2px; */
+      }
 
    
 
