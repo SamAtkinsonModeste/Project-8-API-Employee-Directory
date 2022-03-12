@@ -15,12 +15,14 @@
 
 body {
   font: normal 1em/1.5 "Raleway", sans-serif;
+  position: relative;
+  
 }
 
 /*************************
 BG DIV & OVERLAY
 *************************/
-.overlay,
+#overlay,
 .bg {
     position: fixed;
     top: 0;
@@ -119,6 +121,140 @@ main {
 
 }
 
+.image,
+.image-modal {
+    width: 100px;
+    height:100px;
+    border-radius: 100%;
+    background: linear-gradient(to left, var( --accent-color), var(--image-container-grad-bg-color));
+    align-self: center;
+    margin: auto;
+    transition: transform;
+}
+
+
+
+.image img {
+    width: 90px;
+    height: 90px;
+    display: block;
+    margin: 5px;
+}
+
+.details {
+    width: 65%;
+    padding-left: 10px;
+    margin-left: auto;
+    transition: transform;
+}
+
+/****************************
+OVERLAY'S MODAL CONTAINERS
+*****************************/
+.modal,
+.dot-container {
+    position: fixed;
+    top:0;
+    bottom: 0;
+    left:0;
+    right:0;
+    margin: auto;
+    width: 90vw;
+    height: 60vh;
+    z-index: 15;
+    display: flex;
+    flex-wrap: wrap;
+    border: solid 1px var(--accent-color);
+    border-radius: 5px;
+    box-shadow: 0 1px 20px var(--accent-color)  inset; 
+    padding: 1em;
+}
+
+
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.650rem;
+    text-align: center;
+    background: var(--primary-black-color);
+    border: solid 1px var(--text-color);
+    border-radius: 3px;
+    margin: 5% auto;
+}
+
+.modal-close {
+    z-index: 50;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    margin-left: auto;
+    margin-right: 6px;
+   background: var(--text-color);
+   border-width: 1px;
+   border-color: var(--accent-color);
+   font-size: 1em;
+   color: var(--primary-black-color);
+   box-shadow: 0 1px 8px var(--primary-black-color)  inset; 
+   text-shadow: 1px 1px 1px var( --accent-color);
+   cursor: pointer;
+
+}
+
+
+
+/* .dot-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+} */
+
+.top-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.image-modal {
+    margin: 0 30px;
+   
+}
+/********************************
+ARROWS FOR MODAL NEXT AND BACK
+********************************/
+.arrow-right,
+.arrow-left {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--text-color);
+    border-width: 3px 3px 0 0;
+    transform: rotate(45deg);
+    transition: transform .5s;
+    align-self: center;
+    
+}
+
+/* .image-modal {
+    margin-right: 40px;
+    margin-left: 40px;
+} */
+
+/* .arrow-left:hover {
+    border-color: red;
+    
+}  */
+
+  /* .arrow-right {
+    margin-left: 10px;
+  }  */
+
+ 
+.arrow-left {
+  transform: rotate(227deg);
+}
+
 /*********************************
 HOVER STATE FOR EMPLYEES
 *********************************/
@@ -137,7 +273,7 @@ HOVER STATE FOR EMPLYEES
 }
 
 .employee:hover .details .name {
-    transform: scale(0.9) translate(51px, -10px);
+    transform: scale(0.8) translate(49px, -10px);
 }
 
 .employee:hover .details .email {
@@ -150,33 +286,11 @@ HOVER STATE FOR EMPLYEES
 }
 
 .employee:hover .image {
-    transform: scale(0.8) translate(-55px, -26px);
+    transform: scale(0.8) translate(-21px, -46px);
 }
 
 
-.image {
-    width: 100px;
-    height:100px;
-    border-radius: 100%;
-    background: linear-gradient(to left, var( --accent-color), var(--image-container-grad-bg-color));
-    align-self: center;
-    margin: auto;
-    transition: transform;
-}
 
-.image img {
-    width: 90px;
-    height: 90px;
-    display: block;
-    margin: 5px;
-}
-
-.details {
-    width: 65%;
-    padding-left: 10px;
-    margin-left: auto;
-    transition: transform;
-}
 
 
 
@@ -218,7 +332,7 @@ p,
 }
 
 .name,
-.state {
+.city {
     font-size: 1rem;
 }
 
@@ -236,7 +350,7 @@ p,
 
 
 
-.state {
+.city {
     font-family:  'Advent Pro', sans-serif;
     letter-spacing: 0.2em;
     margin-top:3px;
@@ -257,7 +371,7 @@ FORM ELEMENTS
     outline: none;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
+    cursor:auto;
     /* border: solid green 1px; */
     border-bottom: 1px solid var( --accent-color);
     transition: width 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
@@ -315,6 +429,37 @@ MEDIA QUERY 768PX
     .bg {
         padding-right: 1500px;
     }
+/***************************
+OVERLAY & MODAL CONTAINERS
+***************************/
+    .modal {
+        width: 50vw;
+        height: 60vh;
+    }
+
+    .modal-content {
+        margin: 5% auto;
+        width: 99%;
+    }
+
+    .image-modal {
+        margin: 0 60px;;
+    }
+
+    /* .modal-close {
+        right:211;
+    }
+    
+    .arrow-right {
+        right: 227px;
+      }
+    
+     
+    .arrow-left {
+    
+      left: 227px;
+      
+    }  */
 
     header {
         height: 115px;
@@ -341,7 +486,7 @@ MEDIA QUERY 768PX
     font-size: 1.3rem;
 }
   .email {
-      font-size: 0.750rem;
+      font-size: 0.650rem;
       letter-spacing: 0.03rem;
   }
 
@@ -353,7 +498,7 @@ MEDIA QUERY 768PX
 }
 
 
-.employee:hover .details .state {
+.employee:hover .details .city {
     transform: scale(0.7) translate(-15px, -23px);
 }
 
@@ -377,6 +522,52 @@ MEDIA QUERY 1024PX
         padding-right: 1800px;
     }
 
+    /*****************
+    MODAL ELEMENTS
+    ********************/
+
+    .modal {
+        width: 50vw;
+        height: 85vh;
+    }
+
+    .modal-close {
+        width: 50px;
+        height: 50px;
+        box-shadow: 0 2px 18px var(--primary-black-color)  inset;
+        font-size: 1.7em; 
+    }
+
+    .image-modal{
+        width: 150px;
+        height: 150px;
+        margin: 0 80px;
+    }
+
+    .text-container .name {
+        font-size: 2rem;
+    }
+
+    .text-container .email {
+        font-size: 1.3rem;
+    }
+
+    .text-container .city {
+        font-size: 1.8rem;
+    }
+
+    .text-container .mobile,
+    .text-container .birth {
+        font-size: 1.1rem;
+    }
+
+    .text-container .address {
+        font-size: 1rem;
+    }
+
+
+    
+
     .awesome {
         font-size: 1.6rem;
     }
@@ -393,6 +584,8 @@ MEDIA QUERY 1024PX
         /* border: solid red 2px; */
       }
 
+     
+
    
 
 
@@ -408,7 +601,34 @@ MEDIA QUERY 1440PX
     .bg {
         padding-right: 0;
     }
+/**************************
+MODAL ELEMENTS & TEXT
+*******************/
+    .modal {
+        width: 60vw;
+        height: 80vh;
+    }
 
+
+    .modal-close {
+        width: 50px;
+        height: 50px;
+        font-size: 2em;
+    }
+
+    .image-modal{
+        width: 175px;
+        height: 175px;
+        margin: 0 100px;
+    }
+
+    .arrow-right,
+    .arrow-left {
+        width: 50px;
+        height: 50px;
+    }
+
+    
     .awesome {
         font-size: 2.5rem;
     }
