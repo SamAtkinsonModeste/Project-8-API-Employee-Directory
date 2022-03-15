@@ -39,7 +39,7 @@ BG DIV & OVERLAY
 }
 
 #overlay {
-    display: none;
+    display: fixed;
     background: var(--primary-black-color);
     padding: 0;
     z-index: 10;
@@ -159,11 +159,13 @@ OVERLAY'S MODAL CONTAINERS
     left:0;
     right:0;
     margin: auto;
-    width: 90vw;
-    height: 60vh;
+    width: 319px;
+    height: 464px;
     z-index: 15;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 45px 1fr;
+    justify-content: center;
     border: solid 1px var(--accent-color);
     border-radius: 5px;
     box-shadow: 0 1px 20px var(--accent-color)  inset; 
@@ -177,12 +179,14 @@ OVERLAY'S MODAL CONTAINERS
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 99%;
     padding: 0.650rem;
     text-align: center;
     background: var(--primary-black-color);
     border: solid 1px var(--text-color);
     border-radius: 3px;
-    margin: 5% auto;
+    justify-self: center;
+    /* margin: 5% auto; */
 }
 
 .modal-close {
@@ -327,12 +331,14 @@ h2 {
 .heading,
 h2,
 p,
-#employee-search {
+#employee-search,
+.text-container {
     color: var(--text-color);
 }
 
 .name,
-.city {
+.city,
+.modal-name {
     font-size: 1rem;
 }
 
@@ -341,7 +347,8 @@ p,
 }
 
 
-.email{
+.email,
+.modal-email{
     font-family: 'Raleway', sans-serif;
     letter-spacing: 0.05rem;
     font-size:0.625rem;
@@ -350,7 +357,8 @@ p,
 
 
 
-.city {
+.city,
+.modal-city {
     font-family:  'Advent Pro', sans-serif;
     letter-spacing: 0.2em;
     margin-top:3px;
@@ -433,33 +441,29 @@ MEDIA QUERY 768PX
 OVERLAY & MODAL CONTAINERS
 ***************************/
     .modal {
-        width: 50vw;
-        height: 60vh;
+        width: 500px;
+        height: 500px;
     }
 
-    .modal-content {
-        margin: 5% auto;
-        width: 99%;
-    }
 
     .image-modal {
         margin: 0 60px;;
     }
 
-    /* .modal-close {
-        right:211;
+    .modal-name {
+        font-size: 1.5rem;
     }
-    
-    .arrow-right {
-        right: 227px;
-      }
-    
-     
-    .arrow-left {
-    
-      left: 227px;
-      
-    }  */
+
+    .modal-email,
+    .modal-mobile,
+    .modal-address,
+    .modal-birth {
+        font-size: 1rem;
+    }
+
+    .modal-city {
+        font-size: 1.3rem;
+    }
 
     header {
         height: 115px;
@@ -527,8 +531,8 @@ MEDIA QUERY 1024PX
     ********************/
 
     .modal {
-        width: 50vw;
-        height: 85vh;
+        grid-template-rows: 60px 1fr;
+        height: 650px;
     }
 
     .modal-close {
@@ -544,26 +548,37 @@ MEDIA QUERY 1024PX
         margin: 0 80px;
     }
 
-    .text-container .name {
+
+    .modal-name {
         font-size: 2rem;
     }
 
-    .text-container .email {
+    .modal-email,
+    .modal-mobile,
+    .modal-address,
+    .modal-birth {
         font-size: 1.3rem;
     }
 
-    .text-container .city {
+    .modal-city {
         font-size: 1.8rem;
     }
 
-    .text-container .mobile,
+
+   
+
+    
+
+   
+
+    /* .text-container .mobile,
     .text-container .birth {
         font-size: 1.1rem;
     }
 
     .text-container .address {
         font-size: 1rem;
-    }
+    } */
 
 
     
@@ -605,8 +620,8 @@ MEDIA QUERY 1440PX
 MODAL ELEMENTS & TEXT
 *******************/
     .modal {
-        width: 60vw;
-        height: 80vh;
+        width: 750px;
+        height: 850px;
     }
 
 
@@ -619,7 +634,7 @@ MODAL ELEMENTS & TEXT
     .image-modal{
         width: 175px;
         height: 175px;
-        margin: 0 100px;
+        margin: 0 120px;
     }
 
     .arrow-right,
@@ -628,6 +643,21 @@ MODAL ELEMENTS & TEXT
         height: 50px;
     }
 
+
+    .modal-name {
+        font-size: 3rem;
+    }
+
+    .modal-email,
+    .modal-mobile,
+    .modal-address,
+    .modal-birth {
+        font-size: 2rem;
+    }
+
+    .modal-city {
+        font-size: 2.5rem;
+    }
     
     .awesome {
         font-size: 2.5rem;
