@@ -39,10 +39,10 @@ BG DIV & OVERLAY
 }
 
 #overlay {
-    display: fixed;
+    display: none;
     background: var(--primary-black-color);
     padding: 0;
-    z-index: 10;
+    z-index: 30;
 }
 
 img {
@@ -58,7 +58,7 @@ CONTAINERS
 header{
     position: fixed;
     top:0;
-    z-index: 8;
+    z-index: 20;
     height: 150px;
     width: 100%;
     padding: 1em;
@@ -96,8 +96,9 @@ main {
 #employees-grid {
     margin: 0 auto 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(315px, 1fr));
+    /* align-items: center; */
+    justify-content: center;
 
 
 }
@@ -350,8 +351,8 @@ p,
 .email,
 .modal-email{
     font-family: 'Raleway', sans-serif;
-    letter-spacing: 0.05rem;
-    font-size:0.625rem;
+    letter-spacing: 0.109rem;
+    font-size:0.525rem;
     line-height: 5px;
 }
 
@@ -383,7 +384,12 @@ FORM ELEMENTS
     /* border: solid green 1px; */
     border-bottom: 1px solid var( --accent-color);
     transition: width 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    
   
+}
+
+#employee-search {
+    caret-color: red;
 }
 
 label {
