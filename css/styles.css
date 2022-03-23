@@ -104,6 +104,7 @@ main {
 }
 
 .search {
+    position: relative;
     width: 250px;
     max-width: 500px;
     margin: 0 auto;
@@ -151,7 +152,15 @@ main {
 /********************************
 AUTOCOMPLETE CONTAINERS
 *********************************/
+/*DATALIST ELEMENT*/
+#names {
+    position: absolute;
+    /* display: block; */
+    background: var(--primary-black-color);
+    border-radius: 2px;
+    border: solid var(--accent-color) 1px;
 
+}
 /****************************
 OVERLAY'S MODAL CONTAINERS
 *****************************/
@@ -281,7 +290,8 @@ HOVER STATE FOR EMPLYEES
 }
 
 .employee:hover .details .name {
-    transform: scale(0.8) translate(49px, -10px);
+    transform: scale(1.1) translate(49px, -10px);
+    margin: 28px 6px 28px 3px;
 }
 
 .employee:hover .details .email {
@@ -289,8 +299,8 @@ HOVER STATE FOR EMPLYEES
 }
 
 
-.employee:hover .details .state {
-    transform: scale(0.8) translate(-14px, -5px);
+.employee:hover .details .city {
+    transform: scale(0.8) translate(44px, -5px);
 }
 
 .employee:hover .image {
@@ -348,6 +358,7 @@ p,
 
 .name{
     margin: 28px 0 0 3px;
+    transition: margin;
 }
 
 
@@ -510,9 +521,13 @@ OVERLAY & MODAL CONTAINERS
     transform: scale(0.7) translate(-39px, -17px);
 }
 
+.employee:hover .details .name {
+    transform: scale(1.1) translate(29px, -10px);
+   
+}
 
 .employee:hover .details .city {
-    transform: scale(0.7) translate(-15px, -23px);
+    transform: scale(0.8) translate(29px, -26px);
 }
 
   #employee-search {
