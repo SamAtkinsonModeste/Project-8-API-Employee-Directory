@@ -134,9 +134,4 @@ searchInput.addEventListener('click', (evt) =>{
  
 });
 
-// names.forEach( name=> {
-//   name = name.textContent;
-//   let options = `<option>${name}</option>`;
-//   dataList.appendChild(options);
 
-// });
