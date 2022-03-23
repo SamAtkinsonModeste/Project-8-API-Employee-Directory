@@ -2,6 +2,8 @@
     --text-color: #fff;
     --accent-color: #f00;
     --primary-black-color: #000;
+    --transparent2-prim-black-color: rgba(0, 0, 0, .8);
+    --transparent-prim-black-color: rgba(0, 0, 0, .6);
     --box-shad-color: #686161;
     --form-el-bg-color: #1b1b1b;
     --image-container-grad-bg-color:#0a0402;
@@ -89,7 +91,7 @@ main,
 
 main {
     border: solid 2px var( --accent-color);
-    background: rgba(var(--primary-black-color), .5);
+    background: var(--transparent-prim-black-color);
     padding: 1em;
 }
 
@@ -155,11 +157,28 @@ AUTOCOMPLETE CONTAINERS
 /*DATALIST ELEMENT*/
 #names {
     position: absolute;
-    /* display: block; */
-    background: var(--primary-black-color);
+    display: block;
+    background: var( --transparent2-prim-black-color);
     border-radius: 2px;
     border: solid var(--accent-color) 1px;
+    color: var(--text-color);
+    width: 100%;
+    z-index: 201;
+    /* height: 150px;
+    overflow: hidden; */
+    scroll-behavior: auto;
 
+}
+
+option {
+    color: var(--text-color);
+    padding: 0.825em;
+    background: var(--transparent-prim-black-color);
+    text-align: center;
+    border: 1px solid var(--employee-border-color);
+    width: 96%;
+    margin: 5px auto;
+    border-radius: 5px;
 }
 /****************************
 OVERLAY'S MODAL CONTAINERS
