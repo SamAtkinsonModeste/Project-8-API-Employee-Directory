@@ -119,18 +119,20 @@ searchInput.addEventListener('click', (evt) =>{
   console.log(names, images);
   const searchDiv =  document.getElementById('search');
   const dataList = document.getElementById('names');
+  let optionList = [];
     names.forEach(name => {
-      // console.log(name);
+      console.log(name);
      
-      let options = `<option value="${name.innerText}">${name.innerText}</option>`;
-     console.log(options);
+      name = `<option value="${name.innerText}">${name.innerText}</option>`;
+      optionList.push(name);
+      
+     
      
      console.log(name);
-     dataList.innerHTML = options;
     
     });
 
-  
+  dataList.innerHTML = optionList.join('');
  
 });
 
