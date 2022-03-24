@@ -426,13 +426,14 @@ AUTOCOMPLETE CONTAINERS
 #names {
     position: absolute;
     display: none;
+    padding: 5px 10px;
     background: var( --transparent2-prim-black-color);
     border-radius: 2px;
     border: solid var(--accent-color) 1px;
     color: var(--text-color);
     width: 100%;
     z-index: 201;
-    max-height: 160px;
+    max-height: 35.500em;
     overflow-y: auto;
     
 
@@ -444,7 +445,7 @@ option {
     background: var(--transparent-prim-black-color);
     text-align: center;
     border: 1px solid var(--employee-border-color);
-    width: 96%;
+    width: 90%;
     margin: 5px auto;
     border-radius: 5px;
 }
@@ -546,6 +547,9 @@ OVERLAY & MODAL CONTAINERS
 label {
     transform: translateY(-24px);
 }
+
+
+
 }
 
 
