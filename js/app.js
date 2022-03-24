@@ -144,7 +144,17 @@ TODO: For all events the appropriate div is displayed
       
     //add event listener to option elements, loop through them
     
-      
+      dataList.addEventListener('click', (evt)=>  {
+        let opBtn;
+        let employeeContainer = employeesGrid.children;
+        let employeeIndex =[];
+        opBtn = evt.target;
+         if(opBtn.tagName === "OPTION") {
+           searchInput.value = opBtn.value;
+           dataList.style.display ="none";
+          
+        }
+      });
   
      
   
