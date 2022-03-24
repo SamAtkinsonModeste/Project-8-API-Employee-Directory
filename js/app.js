@@ -119,32 +119,38 @@ TODO: Make sure when the input has input the label stays on focus
 TODO: For all events the appropriate div is displayed
  */
 
-  // function multipleEvents()
-
-searchInput.addEventListener('keyup', (evt) =>{
-  const names = document.querySelectorAll('h2.name');
-  const images = document.querySelectorAll('.image');
-  console.log(names, images);
-  const searchDiv =  document.getElementById('search');
-  const dataList = document.getElementById('names');
-  let optionList = [];
-    names.forEach(name => {
-      console.log(name);
-     
-      name = `<option value="${name.innerText}">${name.innerText}</option>`;
-      optionList.push(name);
+   function dataEmployeeList() {
+    const names = document.querySelectorAll('h2.name');
+    const dataList = document.getElementById('names');
+    let options = [];/**for my option elements*/
+    //loop through each name and insert into option elements
+      names.forEach(name => {
+        name = `<option value="${name.innerText}">${name.innerText}</option>`;
+        options.push(name); 
+      });
+  //populate the datalist with the option elements
+      dataList.innerHTML = options.join('');
       
-     
-     
-     console.log(name);
+     dataList.style.display = 'block'
+     if (dataList.style.display === 'block') {
+       let label = document.querySelector('label');
+       label.classList.add('input-active');
+      } else {
+         label.classList.remove('input-active');
+       }
+
     
-    });
+             
+      
+    //add event listener to option elements, loop through them
+    
+      
+  
+     
+  
+  
+   }
 
-  dataList.innerHTML = optionList.join('');
-
-   dataList.style.display = 'block'
-   evt = dataList;
- 
-});
+searchInput.addEventListener('click', dataEmployeeList);
 
 
