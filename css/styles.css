@@ -151,40 +151,7 @@ main {
     margin-left: auto;
     transition: transform;
 }
-/********************************
-AUTOCOMPLETE CONTAINERS
-*********************************/
-/*DATALIST ELEMENT*/
-#names {
-    position: absolute;
-    display: none;
-    background: var( --transparent2-prim-black-color);
-    border-radius: 2px;
-    border: solid var(--accent-color) 1px;
-    color: var(--text-color);
-    width: 100%;
-    z-index: 201;
-    /* height: 150px;
-    overflow: hidden; */
-    scroll-behavior: auto;
 
-}
-
-option {
-    color: var(--text-color);
-    padding: 0.825em;
-    background: var(--transparent-prim-black-color);
-    text-align: center;
-    border: 1px solid var(--employee-border-color);
-    width: 96%;
-    margin: 5px auto;
-    border-radius: 5px;
-}
-
-option:hover {
-    color: var(--primary-black-color);
-    background: var(--text-color);
-}
 /****************************
 OVERLAY'S MODAL CONTAINERS
 *****************************/
@@ -296,46 +263,6 @@ ARROWS FOR MODAL NEXT AND BACK
   transform: rotate(227deg);
 }
 
-/*********************************
-HOVER STATE FOR EMPLYEES
-*********************************/
-
-.employee:hover {
-    transform: scale(1.2);
-    width: 150px;
-    align-self: center;
-    border-radius: 100%;
-    margin: 0 auto;
-}
-
-
-.employee:hover .details {
-    transform: scale(0.8) translate(-84px, -1px);
-}
-
-.employee:hover .details .name {
-    transform: scale(1.1) translate(49px, -10px);
-    margin: 28px 6px 28px 3px;
-}
-
-.employee:hover .details .email {
-    transform: scale(0.8) translate(-14px, -8px);
-}
-
-
-.employee:hover .details .city {
-    transform: scale(0.8) translate(44px, -5px);
-}
-
-.employee:hover .image {
-    transform: scale(0.8) translate(-21px, -46px);
-}
-
-
-
-
-
-
 /**************************
  HEADINGS & TEXT
 ***************************/
@@ -405,6 +332,41 @@ p,
    
 }
 
+/*********************************
+HOVER STATE FOR EMPLYEES
+*********************************/
+
+.employee:hover {
+    transform: scale(1.2);
+    width: 150px;
+    align-self: center;
+    border-radius: 100%;
+    margin: 0 auto;
+}
+
+
+.employee:hover .details {
+    transform: scale(0.8) translate(-84px, -1px);
+}
+
+.employee:hover .details .name {
+    transform: scale(1.1) translate(49px, -10px);
+    margin: 28px 6px 28px 3px;
+}
+
+.employee:hover .details .email {
+    transform: scale(0.8) translate(-14px, -8px);
+}
+
+
+.employee:hover .details .city {
+    transform: scale(0.8) translate(44px, -5px);
+}
+
+.employee:hover .image {
+    transform: scale(0.8) translate(-21px, -46px);
+}
+
 /***************************
 FORM ELEMENTS
 **************************/
@@ -440,35 +402,58 @@ label {
 }
 
 
-
-
-
-
-
-
 #employee-search:focus{
     width: 100%;
 }
 
 #employee-search:active{
     background: var( --accent-color);
+    color: var(--text-color);
 }
 
-#employee-search:focus ~ label {
+#employee-search:focus ~ label,
+.input-active {
     transform: translateY(-65px);
     font-size: 1.2em;
     text-shadow: 1px 1px 1px var( --accent-color);
 
 }
 
+/********************************
+AUTOCOMPLETE CONTAINERS
+*********************************/
+/*DATALIST ELEMENT*/
+#names {
+    position: absolute;
+    display: none;
+    background: var( --transparent2-prim-black-color);
+    border-radius: 2px;
+    border: solid var(--accent-color) 1px;
+    color: var(--text-color);
+    width: 100%;
+    z-index: 201;
+    max-height: 160px;
+    overflow-y: auto;
+    
 
+}
 
+option {
+    color: var(--text-color);
+    padding: 0.825em;
+    background: var(--transparent-prim-black-color);
+    text-align: center;
+    border: 1px solid var(--employee-border-color);
+    width: 96%;
+    margin: 5px auto;
+    border-radius: 5px;
+}
 
-
-
-
- 
-
+option:hover,
+.active {
+    color: var(--primary-black-color);
+    background: var(--text-color);
+}
 
 
 
