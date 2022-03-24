@@ -157,7 +157,7 @@ AUTOCOMPLETE CONTAINERS
 /*DATALIST ELEMENT*/
 #names {
     position: absolute;
-    display: block;
+    display: none;
     background: var( --transparent2-prim-black-color);
     border-radius: 2px;
     border: solid var(--accent-color) 1px;
@@ -179,6 +179,11 @@ option {
     width: 96%;
     margin: 5px auto;
     border-radius: 5px;
+}
+
+option:hover {
+    color: var(--primary-black-color);
+    background: var(--text-color);
 }
 /****************************
 OVERLAY'S MODAL CONTAINERS
