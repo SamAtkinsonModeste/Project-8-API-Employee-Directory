@@ -425,6 +425,7 @@ AUTOCOMPLETE CONTAINERS
 /*DATALIST ELEMENT*/
 #names {
     position: absolute;
+    top: 80px;
     display: none;
     padding: 5px 10px;
     background: var( --transparent2-prim-black-color);
