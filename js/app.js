@@ -109,11 +109,19 @@ function parseJSON(response) {
 // }
 
 
+/*NOTE: You have to click in the input = click event
+Typing in the input = keyup or keydown event
+hover = mouseout or mouseout
+TODO: I want when you click the input the datalist drops down
+TODO: When you type the options disappear till you are left with the one employee
+TODO: when you click on an option it displays only that div 
+TODO: Make sure when the input has input the label stays on focus
+TODO: For all events the appropriate div is displayed
+ */
 
+  // function multipleEvents()
 
-  
-
-searchInput.addEventListener('click', (evt) =>{
+searchInput.addEventListener('keyup', (evt) =>{
   const names = document.querySelectorAll('h2.name');
   const images = document.querySelectorAll('.image');
   console.log(names, images);
@@ -133,6 +141,9 @@ searchInput.addEventListener('click', (evt) =>{
     });
 
   dataList.innerHTML = optionList.join('');
+
+   dataList.style.display = 'block'
+   evt = dataList;
  
 });
 
