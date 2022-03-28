@@ -73,7 +73,7 @@ header{
 
 
 .inner-header,
-main,
+.main,
 #employees-grid {
     width: 99%;
     max-width: 1400px;
@@ -84,16 +84,17 @@ main,
     max-width: 1500px;
 }
 
-main,
+.main,
 #employees-grid {
     margin: 175px auto 0;
 }
 
-main {
+.main {
     border: solid 2px var( --accent-color);
     background: var(--transparent-prim-black-color);
     padding: 1em;
 }
+
 
 #employees-grid {
     margin: 0 auto 0;
@@ -113,7 +114,8 @@ main {
     /* border: solid red 2px; */
   }
 
-  .employee {
+  .employee,
+  .employeeData {
     display: flex;
     justify-content: space-around;
     height: 150px;
@@ -124,6 +126,13 @@ main {
     transition: transform, width, border-radius,.6s, linear;
 
 }
+
+.employeeData {
+    width: 330px;
+    align-self: center;
+    margin: auto;
+}
+
 
 .image,
 .image-modal {
@@ -150,6 +159,18 @@ main {
     padding-left: 10px;
     margin-left: auto;
     transition: transform;
+}
+
+/*********************************
+SEARCH CLASSES
+**********************************/
+.main-search {
+    max-width: 550px;
+    padding: 100px;
+}
+
+#grid-search {
+    grid-template-columns: 1fr;
 }
 
 /****************************
@@ -336,7 +357,8 @@ p,
 HOVER STATE FOR EMPLYEES
 *********************************/
 
-.employee:hover {
+.employee:hover,
+.employeeData:hover {
     transform: scale(1.2);
     width: 150px;
     align-self: center;
@@ -345,25 +367,30 @@ HOVER STATE FOR EMPLYEES
 }
 
 
-.employee:hover .details {
+.employee:hover .details,
+.employeeData:hover .details {
     transform: scale(0.8) translate(-84px, -1px);
 }
 
-.employee:hover .details .name {
+.employee:hover .details .name,
+.employeeData:hover .details .name {
     transform: scale(1.1) translate(49px, -10px);
     margin: 28px 6px 28px 3px;
 }
 
-.employee:hover .details .email {
+.employee:hover .details .email,
+.employeeData:hover .details .email {
     transform: scale(0.8) translate(-14px, -8px);
 }
 
 
-.employee:hover .details .city {
+.employee:hover .details .city,
+.employeeData:hover .details .city {
     transform: scale(0.8) translate(44px, -5px);
 }
 
-.employee:hover .image {
+.employee:hover .image,
+.employeeData:hover .image {
     transform: scale(0.8) translate(-21px, -46px);
 }
 
@@ -551,9 +578,6 @@ label {
 
 
 
-}
-
-
 /**********************************
 MEDIA QUERY 1024PX
 ***********************************/
@@ -639,9 +663,7 @@ MEDIA QUERY 1024PX
 
      
 
-   
-
-
+  
    
 }
 
