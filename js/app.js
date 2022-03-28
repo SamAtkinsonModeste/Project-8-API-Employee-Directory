@@ -1,6 +1,11 @@
 let employees=[];
 let employeesList =[];
+const main = document.querySelector('main');
 const employeesGrid = document.getElementById('employees-grid');
+const searchDiv = document.getElementById('search');
+const searchInput = document.getElementById('employee-search');
+const label = document.querySelector('label');
+const dataList = document.getElementById('names');
 const overlay = document.getElementById('overlay');
 const randomUsersUrl = "https://randomuser.me/api/?results=12&inc=name,picture,email,location,phone,dob &noinfo &nat=gb,us";
 
@@ -76,91 +81,83 @@ function parseJSON(response) {
   //-------------------------------------------------------------
   //SEARCH FUNCTIONALITY AUTO COMPLETE
   //------------------------------------------------------------
-  /*
-  It seems as though I can't access the innerText of the elements on the page.
-  So going by the study guide work out a function using the displayEmployees function
-  as a templete
-  Watch https://teamtreehouse.com/library/displaying-the-content
-  */
-
-  
-  const searchInput = document.getElementById('employee-search');
-  
-
-  const detailDivs = document.querySelectorAll('div.detail');
-
-  
-
-// const handleSearch = event => {
-//   const searchTerm = event.target.value.toLowerCase();
-  
-//   detailDivs.forEach(detailDiv => {
-//     const text = detailDiv.textContent.toLowerCase();
-//     const box = detailDiv.parentElement;
-//     console.log(box);
-    
-//     if(text.includes(searchTerm)) {
-//       box.style.display = "block";
-//     } else {
-//       box.style.display = "none";  
-//     }
-//   });
-   
-// }
-
-
-/*NOTE: You have to click in the input = click event
-Typing in the input = keyup or keydown event
-hover = mouseout or mouseout
-TODO: I want when you click the input the datalist drops down
-TODO: When you type the options disappear till you are left with the one employee
-TODO: when you click on an option it displays only that div 
-TODO: Make sure when the input has input the label stays on focus
-TODO: For all events the appropriate div is displayed
- */
-
-   function dataEmployeeList() {
+  const searchInputFocus = (event) => {
     const names = document.querySelectorAll('h2.name');
-    const dataList = document.getElementById('names');
     let options = [];/**for my option elements*/
-    //loop through each name and insert into option elements
-      names.forEach(name => {
-        name = `<option value="${name.innerText}">${name.innerText}</option>`;
-        options.push(name); 
-      });
-  //populate the datalist with the option elements
-      dataList.innerHTML = options.join('');
-      
-     dataList.style.display = 'block'
-     if (dataList.style.display === 'block') {
-       let label = document.querySelector('label');
-       label.classList.add('input-active');
-      } else {
-         label.classList.remove('input-active');
-       }
 
-    
-             
+    //loop through each name in the h2 and insert into option elements
+    names.forEach(name => {
+      name = `<option class="autocomplete-list" value="${name.innerText}">${name.innerText}</option>`;
+      options.push(name); 
+    });
+//populate the datalist with the option elements
+    dataList.innerHTML = options.join('');
+    dataList.style.display = 'block';
+    if (dataList.style.display === 'block') {
+      label.classList.add('input-active');
+     } else {
+      dataList.style.display = 'none';
+     label.classList.remove('input-active');
+
+
+}
+
+        console.log(dataList);
+        console.log(options);
+        dataList.onclick = function (evt) {
+          let option = evt.target;
+                if(option.tagName === "OPTION") {
+                  searchInput.value = option.value;
+                  dataList.style.display = 'none';
+                 
+                  const detailBoxs = document.querySelectorAll('.details');
+                 console.log(detailBoxs);
+               detailBoxs.forEach(detailBox => {
+                const textBox = detailBox.textContent;
+                const boxParent = detailBox.parentElement;
+
+                if(textBox.includes(option.value)){
+                  boxParent.style.display = "flex";
+                  boxParent.classList.add('employeeData');
+                  // boxParent.style.margin = "auto";
+                  main.classList.add('main-search');
+                  employeesGrid.id ="grid-search";
+                  
+                 
+                } else {
+                 boxParent.style.display = "none";
+                }
+               });
+              }
       
-    //add event listener to option elements, loop through them
-    
-      dataList.addEventListener('click', (evt)=>  {
-        let opBtn;
-        let employeeContainer = employeesGrid.children;
-        let employeeIndex =[];
-        opBtn = evt.target;
-         if(opBtn.tagName === "OPTION") {
-           searchInput.value = opBtn.value;
-           dataList.style.display ="none";
-          
         }
-      });
-  
+        searchInput.value = " ";
+        if( searchInput.value === " ") {
+           main.classList.remove('main-search');
+           employeesGrid.id ="employees-grid";
+          
+          let  detailBoxs = document.querySelectorAll('.details');
+             console.log(detailBoxs);
+             detailBoxs.forEach(detailBox => {
+               const boxParent = detailBox.parentElement;
+               if (boxParent.classList.contains('employeeData')){
+                      boxParent.classList.remove('employeeData');
+               }
+                if (boxParent.style.display === "none") {
+                  boxParent.style.display = "flex";
+                  dataList.style.display = "none";
+                  label.classList.remove('input-active');                
+                }
+             });
+             
+               
+      }
      
-  
-  
-   }
+  };  
 
-searchInput.addEventListener('click', dataEmployeeList);
+ 
+
+searchInput.addEventListener('focus', searchInputFocus);
+
 
 
