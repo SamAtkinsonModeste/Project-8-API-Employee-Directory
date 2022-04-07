@@ -3,7 +3,7 @@ let employeesList =[];
 const main = document.querySelector('main');
 const employeesGrid = document.getElementById('employees-grid');
 const searchDiv = document.getElementById('search');
-const searchInput = document.getElementById('employee-search');
+let searchInput = document.getElementById('employee-search');
 const label = document.querySelector('label');
 const dataList = document.getElementById('names');
 const overlay = document.getElementById('overlay');
@@ -81,18 +81,29 @@ function parseJSON(response) {
   //-------------------------------------------------------------
   //SEARCH FUNCTIONALITY AUTO COMPLETE
   //------------------------------------------------------------
+  //--------------------------
+  //FOCUS FUNCTION
+  //---------------------------
+ 
+  
   const searchInputFocus = (event) => {
     const names = document.querySelectorAll('h2.name');
-    let options = [];/**for my option elements*/
+    let options = [];/**for my generated option elements*/
 
     //loop through each name in the h2 and insert into option elements
     names.forEach(name => {
       name = `<option class="autocomplete-list" value="${name.innerText}">${name.innerText}</option>`;
-      options.push(name); 
+      
+      options.push(name);;
+    
     });
 //populate the datalist with the option elements
     dataList.innerHTML = options.join('');
     dataList.style.display = 'block';
+  
+    
+   
+//make sure my label stays out of the input    
     if (dataList.style.display === 'block') {
       label.classList.add('input-active');
      } else {
@@ -102,24 +113,26 @@ function parseJSON(response) {
 
 }
 
+
+
         console.log(dataList);
         console.log(options);
-        dataList.onclick = function (evt) {
+//function for clicking the option buttons and displaying the employee
+        dataList.addEventListener('click', (evt)=> {
           let option = evt.target;
                 if(option.tagName === "OPTION") {
                   searchInput.value = option.value;
                   dataList.style.display = 'none';
                  
                   const detailBoxs = document.querySelectorAll('.details');
-                 console.log(detailBoxs);
+                //  console.log(detailBoxs);
                detailBoxs.forEach(detailBox => {
                 const textBox = detailBox.textContent;
-                const boxParent = detailBox.parentElement;
+                const boxParent = detailBox.parentElement; //EMPLOYEE DIV
 
                 if(textBox.includes(option.value)){
                   boxParent.style.display = "flex";
                   boxParent.classList.add('employeeData');
-                  // boxParent.style.margin = "auto";
                   main.classList.add('main-search');
                   employeesGrid.id ="grid-search";
                   
@@ -130,34 +143,119 @@ function parseJSON(response) {
                });
               }
       
-        }
-        searchInput.value = " ";
-        if( searchInput.value === " ") {
-           main.classList.remove('main-search');
-           employeesGrid.id ="employees-grid";
-          
-          let  detailBoxs = document.querySelectorAll('.details');
-             console.log(detailBoxs);
-             detailBoxs.forEach(detailBox => {
-               const boxParent = detailBox.parentElement;
-               if (boxParent.classList.contains('employeeData')){
-                      boxParent.classList.remove('employeeData');
-               }
-                if (boxParent.style.display === "none") {
-                  boxParent.style.display = "flex";
-                  dataList.style.display = "none";
-                  label.classList.remove('input-active');                
-                }
-             });
+        });
+  }; 
+  
+  
+
+  //--------------------------
+  //KEYUP FUNCTION
+  //---------------------------
+ 
+
+const searchInputKeyUp = (event) => {
+ const optionItems = dataList.querySelectorAll('option');
+ console.log(optionItems);
+ searchInput = event.target.value.toLowerCase();
+ const names = document.querySelectorAll('.details');
+console.log(searchInput);
+ console.log(names);
+
+
+ names.forEach(name => {
+   const textName = name.textContent.toLowerCase();
+   const nameBox = name.parentElement;
+
+      if(textName.includes(searchInput)) {
+        nameBox.style.display = "flex";
+        nameBox.classList.add('employeeData');
+        main.classList.add('main-search');
+        employeesGrid.id ="grid-search";
+        //controlling the datalist options
+        if(dataList.style.display === "block") {
+          optionItems.forEach(option => {
+            let parent = option;
+            let op = option.getAttribute('value');
+            op = op.toLowerCase();
+            console.log(op);
+            // let opParent = op.innerHTML;
+            console.log(parent);
+           
+            if (op.includes(searchInput)) {
+              parent.style.display = "block";
              
-               
+              
+            } else {
+              parent.style.display = "none";
+            }
+            
+                  
+            
+          });
+
+        }
+      } else {
+        nameBox.style.display = "none";
+       
       }
-     
-  };  
+ });
+
+ dataList.addEventListener('click', (evt)=> {
+  let theOne = evt.target;
+  console.log(theOne);
+  if(theOne.tagName === "OPTION") {
+    theOne = theOne.innerText;
+  searchInput.value = theOne;
+  console.log(searchInput);
+   dataList.style.display = 'none';
+   
+  }
+   
+ });  
+
+
+  
+};
+
+ //--------------------------
+  //CHANGE FUNCTION EVENT
+  //---------------------------
+ 
+  const searchInputChange = (event) => {
+    searchInput.value = " ";
+        
+    if( searchInput.value === " ") {
+       main.classList.remove('main-search');
+       employeesGrid.id ="employees-grid";
+      
+      let  detailBoxs = document.querySelectorAll('.details');
+        //  console.log(detailBoxs);
+         detailBoxs.forEach(detailBox => {
+           const boxParent = detailBox.parentElement;
+           if (boxParent.classList.contains('employeeData')){
+                  boxParent.classList.remove('employeeData');
+           }
+            if (boxParent.style.display === "none") {
+              boxParent.style.display = "flex";
+              dataList.style.display = "none";
+              label.classList.remove('input-active');                
+            } 
+         });
+    }
+
+  }
+
+  
 
  
 
+
+searchInput.addEventListener('keyup', searchInputKeyUp); 
 searchInput.addEventListener('focus', searchInputFocus);
+// searchInput.addEventListener('change', searchInputChange);
+
+
+
 
 
 
