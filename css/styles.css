@@ -484,7 +484,9 @@ option:hover,
     background: var(--text-color);
 }
 
-
+.hide {
+    display: none;
+}
 
 /**********************************
 MEDIA QUERY 768PX
@@ -574,6 +576,8 @@ OVERLAY & MODAL CONTAINERS
 
 label {
     transform: translateY(-24px);
+}
+
 }
 
 
