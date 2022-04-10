@@ -253,8 +253,8 @@ OVERLAY'S MODAL CONTAINERS
 /********************************
 ARROWS FOR MODAL NEXT AND BACK
 ********************************/
-.arrow-right,
-.arrow-left {
+#arrow-right,
+#arrow-left {
     width: 30px;
     height: 30px;
     border: 1px solid var(--text-color);
@@ -262,6 +262,7 @@ ARROWS FOR MODAL NEXT AND BACK
     transform: rotate(45deg);
     transition: transform .5s;
     align-self: center;
+    background:transparent;
     
 }
 
@@ -270,17 +271,17 @@ ARROWS FOR MODAL NEXT AND BACK
     margin-left: 40px;
 } */
 
-/* .arrow-left:hover {
+/* #arrow-left:hover {
     border-color: red;
     
 }  */
 
-  /* .arrow-right {
+  /* #arrow-right {
     margin-left: 10px;
   }  */
 
  
-.arrow-left {
+#arrow-left {
   transform: rotate(227deg);
 }
 
@@ -701,8 +702,8 @@ MODAL ELEMENTS & TEXT
         margin: 0 120px;
     }
 
-    .arrow-right,
-    .arrow-left {
+    #arrow-right,
+    #arrow-left {
         width: 50px;
         height: 50px;
     }
