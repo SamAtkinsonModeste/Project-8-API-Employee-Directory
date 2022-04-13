@@ -416,6 +416,7 @@ HOVER STATE FOR EMPLYEES
 .employeeData:hover .details .name {
     transform: scale(1.1) translate(49px, -10px);
     margin: 28px 6px 28px 3px;
+    font-size: 1.1rem;
 }
 
 .employee:hover .details .email,
@@ -427,6 +428,7 @@ HOVER STATE FOR EMPLYEES
 .employee:hover .details .city,
 .employeeData:hover .details .city {
     transform: scale(0.8) translate(44px, -5px);
+    letter-spacing: 0.1rem;
 }
 
 .employee:hover .image,
