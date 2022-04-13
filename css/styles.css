@@ -227,7 +227,7 @@ OVERLAY'S MODAL CONTAINERS
     /* margin: 5% auto; */
 }
 
-.modal-close {
+#modal-close {
     z-index: 50;
     width: 30px;
     height: 30px;
@@ -237,25 +237,30 @@ OVERLAY'S MODAL CONTAINERS
    background: var(--text-color);
    border-width: 1px;
    border-color: var(--accent-color);
-   font-size: 1em;
+   font-size: 1.5em;
    color: var(--primary-black-color);
    box-shadow: 0 1px 8px var(--primary-black-color)  inset; 
    text-shadow: 1px 1px 1px var( --accent-color);
+   transition: all .5s ease-out;
    cursor: pointer;
 
 }
 
+#modal-close:hover,
+#modal-close:focus {
+    transform: scale(1.2);
+}
 
 
-/* .dot-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-} */
 
 .top-content {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    width: 100%;
+}
+
+.text-container {
     width: 100%;
 }
 
@@ -290,8 +295,7 @@ ARROWS FOR MODAL NEXT AND BACK
     
 } 
 
-  #arrow-right:focus,
-  #arrow-left:focus {
+  #arrow-right .click {
       border-width:5px 5px 0 0;
       border-radius: 5px;
       border-color: var(--accent-color);
@@ -299,8 +303,24 @@ ARROWS FOR MODAL NEXT AND BACK
       
   }
 
- 
+  #arrow-left .click {
+    border-width:5px 5px 0 0;
+    border-radius: 5px;
+    border-color: var(--accent-color);
+    transform: rotate(227deg) scale(1.3);
+  }
 
+ 
+#modal-separator {
+  display: block;
+  width: 90%;
+  height: 5px;
+  margin: auto;
+  border: 0;
+  border-radius: 8px;
+  background: linear-gradient(to top, var( --accent-color), var(--form-el-bg-color));
+
+}
 
 /**************************
  HEADINGS & TEXT
@@ -521,7 +541,7 @@ OVERLAY & MODAL CONTAINERS
 ***************************/
     .modal {
         width: 500px;
-        height: 600px;
+        height: 650px;
     }
 
 
@@ -615,18 +635,25 @@ MEDIA QUERY 1024PX
     MODAL ELEMENTS
     ********************/
 
-    .modal {
+    /* .modal {
         grid-template-columns: 1fr;
         grid-template-rows: 60px 1fr;
         height: 650px;
-    }
+    } */
 
-    /* .modal-close {
+     /* .modal-close {
         width: 35px;
         height: 35px;
         box-shadow: 0 2px 18px var(--primary-black-color)  inset;
         font-size: 1.7em; 
-    }
+    } */
+
+
+    #arrow-right,
+    #arrow-left {
+    width: 45px;
+    height: 45px;
+  }
 
     .image-modal{
         width: 150px;
@@ -634,21 +661,26 @@ MEDIA QUERY 1024PX
         margin: 0 80px;
     }
 
-
-    .modal-name {
-        font-size: 2rem;
+    .image-modal img {
+        width: 140px;
+        height: 140px;
     }
 
-    .modal-email,
+
+    /* .modal-name {
+        font-size: 2rem;
+    } */
+
+    /* .modal-email,
     .modal-mobile,
     .modal-address,
     .modal-birth {
         font-size: 1.3rem;
-    }
-
-    .modal-city {
-        font-size: 1.8rem;
     } */
+
+    /* .modal-city {
+        font-size: 1.8rem;
+    }  */
 
 
    
