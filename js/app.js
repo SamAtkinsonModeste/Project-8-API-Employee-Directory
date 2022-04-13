@@ -1,5 +1,7 @@
 let employees=[];
 let employeesList =[];
+let employeeBoxIndex;
+let activeEmployee;
 const main = document.querySelector('main');
 const employeesGrid = document.getElementById('employees-grid');
 const searchDiv = document.getElementById('search');
@@ -11,40 +13,14 @@ const randomUsersUrl = "https://randomuser.me/api/?results=12&inc=name,picture,e
 
 
 
-fetchData(randomUsersUrl)
+fetch(randomUsersUrl)
 // .then(response => console.log(response))
-.then(checkStatus)
-.then(parseJSON)
+.then(res => res.json())
 .then(data => data.results)
 .then(data => {
   awesomeEmployees(data)
 })
-.catch(printError)
-//-------------------------------
-//FETCH FUNCTIONS
-//-------------------------------
-
-function fetchData(url) {
-    return fetch(url);
-}
-
-function checkStatus(response) {
-  if (response.ok) {
-      return Promise.resolve(response);
-  } else {
-      return Promise.reject(new Error(response.error));
-  }
-}
-
-function parseJSON(response) {
-    return response.json();
-  }
-
-
-  function printError(error) {
-      error = "Oops something went wrong!";
-      return console.log(error);
-  }
+.catch(err => console.log(err));
 
 
  // --------------------------
@@ -55,6 +31,7 @@ function parseJSON(response) {
       employees = employeeData;
 
       let employeeHTML = '';
+      let options = '';
 
       employees.forEach((employee,index) =>{
           let name = employee.name;
@@ -71,19 +48,26 @@ function parseJSON(response) {
           <p class="city">${city}</p>
           </div>
           </div>
-          `
-      });
-      console.log(employees);
-      employeesGrid.innerHTML = employeeHTML;
+          `;
+           /**for my generated option elements*/
+    //for each value and text of my option elements insert the employee name variables
+    options += `<option class="autocomplete-list" value="${name.first} ${name.last}">${name.first} ${name.last}</option>`;
 
+});
+  
+    
+      console.log(employees);
+  employeesGrid.innerHTML = employeeHTML;
+  //populate the datalist with the option elements
+  dataList.innerHTML = options;
   }
 
   //-------------------------------------------------------------
   //SEARCH FUNCTIONALITY AUTO COMPLETE
   //------------------------------------------------------------
-  //--------------------------
-  //DATALIST CLICK FUNCTION
-  //---------------------------
+  //-------------------------------
+  //DATALIST CLICK EVENT FUNCTION
+  //------------------------------
  
 
   const clickDataList = (event) => {
@@ -115,22 +99,13 @@ function parseJSON(response) {
   };
 
   //--------------------------
-  //FOCUS FUNCTION
+  //FOCUS EVENT FUNCTION
   //---------------------------
  
   
   const searchInputFocus = (event) => {
     const names = document.querySelectorAll('h2.name');
-    let options = [];/**for my generated option elements*/
-    //loop through each name in the h2 and insert into option elements
-    names.forEach(name => {
-      name = `<option class="autocomplete-list" value="${name.innerText}">${name.innerText}</option>`;
-      
-      options.push(name);;
-    
-    });
-//populate the datalist with the option elements
-    dataList.innerHTML = options.join('');
+   
     dataList.style.display = 'block';
   
     dataList.addEventListener("click", clickDataList);
@@ -163,18 +138,18 @@ function parseJSON(response) {
   }; 
 
   //--------------------------
-  //KEYUP FUNCTION
+  //KEYUP EVENT  FUNCTION
   //---------------------------
  
 
 const searchInputKeyUp = (event) => {
     searchInput = event.target.value.toLowerCase();
-    const names = document.querySelectorAll('.details');
+    const names = document.querySelectorAll('.details .name');
     const opBoxs = document.querySelectorAll("option");
   
         names.forEach(name => {
             const textName = name.textContent.toLowerCase();
-            const nameBox = name.parentElement;
+            const nameBox = name.closest('.employee');
         
             if(textName.includes(searchInput)) {
                 nameBox.style.display = "flex";
@@ -221,6 +196,57 @@ const searchInputKeyUp = (event) => {
        
 };
 
+ //--------------------------
+  //OVERLAY EVENT  FUNCTION
+  //---------------------------
+ 
+const modalDisplayOverlayClose = event => {
+    const closeOverlay = overlay.querySelector('#modal-close');
+    const leftArrow = overlay.querySelector('#arrow-left');
+    const rightArrow = overlay.querySelector('#arrow-right');
+
+
+    if(event.target.id === "modal-close") {
+        overlay.classList.remove('activeO');
+    }
+
+    
+
+    //LEFT ARROW EVENT
+    if(event.target.id === "arrow-left" && activeEmployee > 0) {
+       console.log(activeEmployee);
+    //    console.log(employeeBoxIndex);
+       activeEmployee --;
+       console.log(activeEmployee);
+       displayModal(activeEmployee);
+
+       
+            
+     } 
+
+      //RIGHT ARROW EVENT
+    if(event.target.id === "arrow-right" && activeEmployee < employees.length - 1) {
+        console.log(activeEmployee);
+     //    console.log(employeeBoxIndex);
+        activeEmployee ++;
+        console.log(activeEmployee);
+        displayModal(activeEmployee);
+             
+      } 
+
+      if (event.target.id === "arrow-left" && activeEmployee === 0) {
+        event.target.style.visibility = "hidden";
+      }
+
+    if(event.target.id === "arrow-right" && activeEmployee === employees.length - 1) {
+       
+        event.target.style.visibility = "hidden";
+
+    }
+    
+        
+
+};
 
 
 //---------------------------------------
@@ -231,20 +257,23 @@ function displayModal(index) {
     let { name, dob, phone, email, location: { city, street, state, postcode
     }, picture } = employees[index];
     let date = new Date(dob.date);
+   
+    
+    
     
     const modalHTML = `
     <div class="modal">
-    <button class="modal-close">X</button>
+    <button id="modal-close" class="modal-close">X</button>
     <div class="modal-content">
         <div class="top-content">
-            <div class="arrow-left"></div>
+            <button id="arrow-left"></button>
         <div class="image-modal"><img src="${picture.large}"/></div>
-        <div class="arrow-right"></div>
+        <button id="arrow-right"></button>
        
     </div>
       
     <div class="text-container">
-    <h2 class="modal-name"${name.first} ${name.last}</h2>
+    <h2 class="modal-name">${name.first} ${name.last}</h2>
     <p class="modal-email">${email}</p>
     <p class="modal-city">${city}</p>
     <hr />
@@ -259,37 +288,39 @@ function displayModal(index) {
     
     </div>
     `;
-
-    overlay.style.display = "block"
+    
+    
+    activeEmployee = parseInt(index);
+    overlay.classList.add("activeO");
     overlay.innerHTML = modalHTML;
+    // const allEmployees = employeesGrid.querySelectorAll('.employee');
+    // console.log(allEmployees);
+    
 }
 
   searchInput.addEventListener('focus', searchInputFocus);
   searchInput.addEventListener('keyup', searchInputKeyUp);
 
   
+  //EMPLOYEESGIRD EVENT LISTENER
   employeesGrid.addEventListener('click', evt => {
-      if (evt.target !== employeesGrid){
+        if (evt.target !== employeesGrid){
+             const employeeBox = evt.target.closest(".employee");
+             const index = employeeBox.getAttribute("data-index");
+             employeeBoxIndex = parseInt(index);
+             console.log(employeeBoxIndex);
+             displayModal(employeeBoxIndex);
+        }
+  });
 
-            const employeeBox = evt.target.closest(".employee");
-            const index = employeeBox.getAttribute("data-index");
+  
 
-            displayModal(index);
+//----------------------------------------------------------
+//OVERLAY EVENT LISTENER
+//---------------------------------------------------------
+overlay.addEventListener('click', modalDisplayOverlayClose);
 
-      }
-  } );
 
 
-//   function closeModal ()
-//   const modalClose = overlay.querySelector('button');
-//   console.log(modalClose);
- 
-
-  overlay.addEventListener('click', (evt) => {
-      let btn = evt.target;
-      if (btn.tagName === "BUTTON") {
-    overlay.style.display = "none";
-      }
-} );
   
  
