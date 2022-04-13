@@ -6,6 +6,7 @@
     --transparent-prim-black-color: rgba(0, 0, 0, .6);
     --box-shad-color: #686161;
     --form-el-bg-color: #1b1b1b;
+    --scroll-handle-color: rgb(201, 181, 181);
     --image-container-grad-bg-color:#0a0402;
     --employee-border-color:#5a5858;
     --transition-overlay: all 0.5s ease-in-out;
@@ -506,6 +507,27 @@ AUTOCOMPLETE CONTAINERS
 
 }
 
+/*SCROLLBAR FOR DATALIST*/
+#names::-webkit-scrollbar {
+    width: 20px;
+}
+
+#names::-webkit-scrollbar-track {
+   box-shadow:inset 0 0 10px var(--accent-color);
+    border-radius: 10px;
+}
+
+#names::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 15px var(--scroll-handle-color);
+    border-radius: 10px;
+}
+
+/* #names::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-black-color);
+} */
+
+
+
 option {
     color: var(--text-color);
     padding: 0.825em;
@@ -523,9 +545,12 @@ option:hover,
     background: var(--text-color);
 }
 
+/*DO I USE THIS?*/
 .hide {
     display: none;
 }
+
+
 
 /**********************************
 MEDIA QUERY 768PX
