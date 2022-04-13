@@ -1,6 +1,5 @@
 let employees=[];
 let employeesList =[];
-let employeeBoxIndex;
 let activeEmployee;
 const main = document.querySelector('main');
 const employeesGrid = document.getElementById('employees-grid');
@@ -201,10 +200,6 @@ const searchInputKeyUp = (event) => {
   //---------------------------
  
 const modalDisplayOverlayClose = event => {
-    const closeOverlay = overlay.querySelector('#modal-close');
-    const leftArrow = overlay.querySelector('#arrow-left');
-    const rightArrow = overlay.querySelector('#arrow-right');
-
 
     if(event.target.id === "modal-close") {
         overlay.classList.remove('activeO');
@@ -214,10 +209,7 @@ const modalDisplayOverlayClose = event => {
 
     //LEFT ARROW EVENT
     if(event.target.id === "arrow-left" && activeEmployee > 0) {
-       console.log(activeEmployee);
-    //    console.log(employeeBoxIndex);
        activeEmployee --;
-       console.log(activeEmployee);
        displayModal(activeEmployee);
 
        
@@ -226,10 +218,7 @@ const modalDisplayOverlayClose = event => {
 
       //RIGHT ARROW EVENT
     if(event.target.id === "arrow-right" && activeEmployee < employees.length - 1) {
-        console.log(activeEmployee);
-     //    console.log(employeeBoxIndex);
         activeEmployee ++;
-        console.log(activeEmployee);
         displayModal(activeEmployee);
              
       } 
@@ -276,7 +265,7 @@ function displayModal(index) {
     <h2 class="modal-name">${name.first} ${name.last}</h2>
     <p class="modal-email">${email}</p>
     <p class="modal-city">${city}</p>
-    <hr />
+    <hr id="modal-separator"/>
     <p class="modal-mobile">${phone}</p>
     <p class="modal-address">${street.number} ${street.name}</p>
     <p class="modal-address">${state}</p>
@@ -293,8 +282,7 @@ function displayModal(index) {
     activeEmployee = parseInt(index);
     overlay.classList.add("activeO");
     overlay.innerHTML = modalHTML;
-    // const allEmployees = employeesGrid.querySelectorAll('.employee');
-    // console.log(allEmployees);
+   
     
 }
 
@@ -307,9 +295,7 @@ function displayModal(index) {
         if (evt.target !== employeesGrid){
              const employeeBox = evt.target.closest(".employee");
              const index = employeeBox.getAttribute("data-index");
-             employeeBoxIndex = parseInt(index);
-             console.log(employeeBoxIndex);
-             displayModal(employeeBoxIndex);
+             displayModal(index);
         }
   });
 
