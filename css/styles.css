@@ -139,11 +139,7 @@ header{
 
 }
 
-.employeeData {
-    width: 330px;
-    align-self: center;
-    margin: auto;
-}
+
 
 
 .image,
@@ -177,10 +173,6 @@ header{
 /*********************************
 SEARCH CLASSES
 **********************************/
-.main-search {
-    max-width: 550px;
-    padding: 100px;
-}
 
 #grid-search {
     grid-template-columns: 1fr;
@@ -221,7 +213,8 @@ OVERLAY'S MODAL CONTAINERS
     padding: 0.650rem;
     text-align: center;
     background: var(--primary-black-color);
-    border: solid 1px var(--text-color);
+    /* border: solid 1px var(--text-color); */
+    box-shadow: inset 0 0 10px var(--text-color);
     border-radius: 3px;
     justify-self: center;
     margin-bottom: 45px;
@@ -259,6 +252,7 @@ OVERLAY'S MODAL CONTAINERS
     flex-direction: row;
     justify-content: space-evenly;
     width: 100%;
+    padding: 30px 30px 0;
 }
 
 .text-container {
@@ -463,8 +457,34 @@ FORM ELEMENTS
     caret-color: red;
 }
 
+#search-close {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 33px;
+    right: 10px;
+    border-radius: 100%;
+    /* margin-left: auto;
+    margin-right: 6px; */
+   background: var(--form-el-bg-color);
+   border-width: 1px;
+   border-color: rgba(255, 0, 0, 0.6);
+   font-size: 1.5em;
+   color: var(--box-shad-color);
+   box-shadow: 0 0 15px var(--primary-black-color)  inset; 
+   text-shadow: 1px 1px 1px var( --accent-color);
+   transition: .5s ease-out;
+   cursor: pointer;
+
+}
+
+
+#search-close:hover {
+    transform: scale(1.1);
+}
 label {
     display: block;
+    width: 147px;
    cursor: pointer;
    margin-left: 4px;
    color: var(  --text-color);
@@ -484,6 +504,7 @@ label {
 
 #employee-search:focus ~ label,
 .input-active {
+    width: 175px;
     transform: translateY(-65px);
     font-size: 1.2em;
     text-shadow: 1px 1px 1px var( --accent-color);
@@ -494,7 +515,7 @@ label {
 AUTOCOMPLETE CONTAINERS
 *********************************/
 /*DATALIST ELEMENT*/
-#names {
+#data-names {
     position: absolute;
     top: 80px;
     display: none;
@@ -511,22 +532,26 @@ AUTOCOMPLETE CONTAINERS
 
 }
 
+.data-name-on {
+    display: block;
+}
+
 /*SCROLLBAR FOR DATALIST*/
-#names::-webkit-scrollbar {
+#data-names::-webkit-scrollbar {
     width: 20px;
 }
 
-#names::-webkit-scrollbar-track {
+#data-names::-webkit-scrollbar-track {
    box-shadow:inset 0 0 10px var(--accent-color);
     border-radius: 10px;
 }
 
-#names::-webkit-scrollbar-thumb {
+#data-names::-webkit-scrollbar-thumb {
     box-shadow: inset 0 0 15px var(--scroll-handle-color);
     border-radius: 10px;
 }
 
-/* #names::-webkit-scrollbar-thumb:hover {
+/* #data-names::-webkit-scrollbar-thumb:hover {
     background: var(--primary-black-color);
 } */
 
@@ -543,11 +568,18 @@ option {
     border-radius: 5px;
 }
 
-option:hover,
-.active {
+option:hover {
     color: var(--primary-black-color);
     background: var(--text-color);
 }
+
+
+#active {
+color: var(--text-color);
+background: linear-gradient(to top, var(--form-el-bg-color), var( --accent-color), var(--form-el-bg-color));
+}
+
+
 
 /*DO I USE THIS?*/
 .hide {
@@ -568,6 +600,22 @@ MEDIA QUERY 768PX
 /***************************
 OVERLAY & MODAL CONTAINERS
 ***************************/
+
+/*****************
+MAIN SELECTED
+**************/
+.main-search {
+    width: 550px;
+    padding: 100px;
+}
+
+.employeeData {
+    width: 330px;
+    align-self: center;
+    margin: auto;
+}
+
+
     .modal {
         width: 500px;
         height: 650px;
@@ -575,7 +623,21 @@ OVERLAY & MODAL CONTAINERS
 
 
     .image-modal {
-        margin: 0 60px;;
+        margin: 0 60px;
+        
+    }
+
+    .image,
+    .image-modal {
+        width: 110px;
+        height: 110px;
+    }
+
+    .image img,
+    .image-modal img {
+        width: 100px;
+        height: 100px;
+        padding: 1px;
     }
 
     .modal-name {
@@ -604,7 +666,13 @@ OVERLAY & MODAL CONTAINERS
        /* border: solid 2px rgb(238, 238, 10); */
    }
 
-   
+   #search-close {
+       top:25px;
+       width: 25px;
+       height: 25px;
+       font-size: 1.1rem;
+       
+   }
 
    .search {
        margin: 0;
@@ -660,23 +728,24 @@ MEDIA QUERY 1024PX
         padding-right: 1800px;
     }
 
+    #search-close {
+        right: 12px;
+    }
+
+    .main-search {
+        width: 650px;
+        padding: 100px;
+        margin: 350px auto 30px;
+    }
+    
+    .employeeData {
+        width: 400px;
+        align-self: center;
+        margin: auto;
+    }
     /*****************
     MODAL ELEMENTS
     ********************/
-
-    /* .modal {
-        grid-template-columns: 1fr;
-        grid-template-rows: 60px 1fr;
-        height: 650px;
-    } */
-
-     /* .modal-close {
-        width: 35px;
-        height: 35px;
-        box-shadow: 0 2px 18px var(--primary-black-color)  inset;
-        font-size: 1.7em; 
-    } */
-
 
     #arrow-right,
     #arrow-left {
