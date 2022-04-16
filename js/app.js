@@ -103,7 +103,7 @@ fetch(randomUsersUrl)
   //--------------------------
   //FOCUS EVENT FUNCTION
   //---------------------------
-  const searchInputFocus = (event) => {
+  searchInput.onfocus = () => {
       dataList.style.display = "block";
      const nameOpts = dataList.querySelectorAll('option');
     //  console.log(nameOpts);
@@ -157,11 +157,10 @@ fetch(randomUsersUrl)
   //--------------------------
   //KEYUP EVENT  FUNCTION
   //---------------------------
-  const searchInputKeyUp = (event) => {
+  searchInput.oninput = () => {
       
-        let input = event.target.value.toLowerCase();
+        let text = searchInput.value.toLowerCase();
 
-        
         let optionItems = dataList.querySelectorAll('option');
         // console.log(optionItems);
         let matchedOption;
@@ -174,7 +173,7 @@ fetch(randomUsersUrl)
             let optionName = optionItem.textContent.toLowerCase();
             let optionBox = optionItem.closest('.autocomplete-list');
 
-            if( optionName.startsWith(input) ) { 
+            if( optionName.startsWith(text) ) { 
                 optionBox.classList.add('optionMatch');
                 matchedOption = optionBox.value;
                 console.log(matchedOption);
@@ -189,7 +188,7 @@ fetch(randomUsersUrl)
                 console.log(textName);
                 const nameBox = name.closest('.employee');
 
-                if(textName.includes(input)) {
+                if(textName.includes(text)) {
                     nameBox.style.display = "flex"; 
                 } else {
                     nameBox.style.display = "none"; 
@@ -310,8 +309,8 @@ function displayModal(index) {
 //OVERLAY & SEARCH EVENT LISTENERS
 //---------------------------------------------------------
 overlay.addEventListener('click', modalDisplayOverlayClose);
-searchInput.addEventListener('focus', searchInputFocus);
-searchInput.addEventListener('keyup', searchInputKeyUp);
+// searchInput.addEventListener('focus', searchInputFocus);
+// searchInput.addEventListener('keyup', searchInputKeyUp);
 
 
 
