@@ -44,7 +44,7 @@ fetch(randomUsersUrl)
           <div class="employee" data-index="${index}">
           <div class="image"> <img src="${image}"> </div>
           <div class="details">
-          <h2 class="name"> ${name.first} ${name.last}</h2>
+          <h2 class="name"> <span class="firstName">${name.first} ${name.last}</h2>
           <p class="email">${email}</p>
           <p class="city">${city}</p>
           </div>
@@ -68,9 +68,35 @@ fetch(randomUsersUrl)
   //SEARCH FUNCTIONALITY AUTO COMPLETE
   //------------------------------------------------------------
   //-------------------------------
-  //DATALIST CLICK EVENT FUNCTION
+  //RESET CLOSE CLICK EVENT FUNCTION
   //------------------------------
- 
+ const focusClose = (event) => {
+    label.classList.remove('input-active');
+            dataList.style.display = "none";
+            main.classList.remove("main-search");
+            employeesGrid.id ="employees-grid";
+            searchInput.value = " ";
+            
+            let boxsDetails = employeesGrid.querySelectorAll('.employee');
+            console.log(boxsDetails);
+            boxsDetails.forEach(detailBox => {
+                const boxChild = detailBox; //EMPLOYEE DIV
+                boxChild.style.display = "flex";
+                  boxChild.classList.remove('employeeData');
+                  console.log(boxChild);
+               });
+            
+ };
+
+
+ const keyUpClose = (event) => {
+     const optionItems = dataList.querySelectorAll('.autocomplete-list');
+    optionItems.forEach(optionItem => {
+        optionItem.classList.remove("hide");
+        optionItem.classList.remove("optionMatch");
+
+       });
+ };
 
 
   
@@ -80,7 +106,7 @@ fetch(randomUsersUrl)
   const searchInputFocus = (event) => {
       dataList.style.display = "block";
      const nameOpts = dataList.querySelectorAll('option');
-     console.log(nameOpts);
+    //  console.log(nameOpts);
      let activeOption;
 
 
@@ -122,44 +148,66 @@ fetch(randomUsersUrl)
      });
 
      
-        closeSearch.addEventListener('click', () => {
-            label.classList.remove('input-active');
-            dataList.style.display = "none";
-            main.classList.remove("main-search");
-            employeesGrid.id ="employees-grid";
-            searchInput.value = " ";
+        closeSearch.addEventListener('click', focusClose);
             
-            let boxsDetails = employeesGrid.querySelectorAll('.employee');
-            console.log(boxsDetails);
-            boxsDetails.forEach(detailBox => {
-                const boxChild = detailBox; //EMPLOYEE DIV
-                boxChild.style.display = "flex";
-                  boxChild.classList.remove('employeeData');
-                  console.log(boxChild);
-               });
-            
-               
-        });
-
-        
-            
-            
-        
-
-       
-        
-   
-
   };
   
   
-window.addEventListener('keyup', (evt) => {
-    console.log(evt.key);
-});
+
   //--------------------------
   //KEYUP EVENT  FUNCTION
   //---------------------------
- 
+  const searchInputKeyUp = (event) => {
+      
+        let input = event.target.value.toLowerCase();
+
+        
+        let optionItems = dataList.querySelectorAll('option');
+        // console.log(optionItems);
+        let matchedOption;
+      
+        const names = document.querySelectorAll('.details .firstName');
+        // console.log(searchInput);
+        console.log(names);
+
+        optionItems.forEach(optionItem => {
+            let optionName = optionItem.textContent.toLowerCase();
+            let optionBox = optionItem.closest('.autocomplete-list');
+
+            if( optionName.startsWith(input) ) { 
+                optionBox.classList.add('optionMatch');
+                matchedOption = optionBox.value;
+                console.log(matchedOption);
+            } else {
+                optionBox.classList.add('hide');
+            }
+            
+        });
+   
+            names.forEach(name => {
+                 const textName = name.textContent;
+                console.log(textName);
+                const nameBox = name.closest('.employee');
+
+                if(textName.includes(input)) {
+                    nameBox.style.display = "flex"; 
+                } else {
+                    nameBox.style.display = "none"; 
+                }
+
+                
+            });
+
+
+           
+                  
+            
+            closeSearch.addEventListener('click', keyUpClose);
+           
+
+
+
+  };
 
 
 
@@ -263,7 +311,7 @@ function displayModal(index) {
 //---------------------------------------------------------
 overlay.addEventListener('click', modalDisplayOverlayClose);
 searchInput.addEventListener('focus', searchInputFocus);
-// searchInput.addEventListener('keyup', searchInputKeyUp);
+searchInput.addEventListener('keyup', searchInputKeyUp);
 
 
 
