@@ -574,7 +574,8 @@ option:hover {
 }
 
 
-#active {
+#active,
+.optionMatch {
 color: var(--text-color);
 background: linear-gradient(to top, var(--form-el-bg-color), var( --accent-color), var(--form-el-bg-color));
 }
