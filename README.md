@@ -73,6 +73,7 @@ searchInput.onfocus = function () {};
 The difference is with the 2nd version multiple events can not be associated with an element as they will be overwritten. 
 
 I also learnt if you don't want the browser's default dropdown for datalists you leave the value for the input's list attibute as an empty string.
+
 I was proud of my hover state on my employee divs. I had so much fun creating them.
 ```css
     .employee:hover .details .city,
@@ -104,3 +105,11 @@ into my CSS. For example, I loved what he did with a forEach on all the buttons.
 - Twitter - [@sammodeste1](https://www.twitter.com/@sammodeste1)
 - LinkedIn - [sam-atkinson-modeste](https://www.linkedin.com/<<sam-atkinson-modeste>>)
 - GitHub - [SamAtkinsonModeste](https://www.github.com/SamAtkinsonModeste)
+
+
+## Acknowledgments
+- [Brian Jensen](https://teamtreehouse.com/brianjensen) at Treehouse has always encouraged me with learning JavaScript. I don't think I would have gotten to this point in my learning where for once, I wasn't absolutely terrified creating a app.js file.
+
+- [Rohlad van Merde](https://teamtreehouse.com/rohald89) also at Treehouse has been my soundboard for this project. He also started me down the path of using a datalist for my search functionality.
+
+Seeing their reaction to my project and the compliments they gave me, has inspired me to push myself well outside my comfort zone with JavaScript.
