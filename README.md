@@ -15,8 +15,8 @@ Communicating with APIs allows you to work with microservices and with vast data
 - [Process](#my-process) 
   - [Technologies used](#technologies-used) 
   - [What I learned](#what-i-learned) 
-  - [Continued development](#continued-development) Coming Soon
-  - [Useful resources](#useful-resources) Coming Soon
+  - [Continued development](#continued-development) 
+  - [Useful resources](#useful-resources) 
 - [Author](#author) Coming Soon
 - [Acknowledgments](#acknowledgments) Coming Soon
 
@@ -60,10 +60,10 @@ I start by experimenting with the css as well as the javascript, and then when I
 - JavaScript
 - Fetch [Random User Generator](https://randomuser.me/) - API of Random Users
 - Photoshop - Created my own favicon
-- Favicon[Favicon Generator](https://www.favicon-generator.org/) - The Favicon Generator App where I upload my created favicon
+- Favicon [Favicon Generator](https://www.favicon-generator.org/) - The Favicon Generator App where I upload my created favicon
 
 ### What I Learned
-How easy it is to use Fetch to get data from a API. The hard part was then using the data, which was a challenge. So I learnt to target the little HTML I had as well as using an empty array to push all the data from the API to. By console.logging the array, I was able to see how the data was formatted.
+How easy it is to use Fetch to get data from an API. The hard part was then using the data, which was a challenge. So I learnt to target the little HTML I had as well as using an empty array to push all the data from the API to. By console.logging the array, I was able to see how the data was formatted.
  I learnt the difference between:
 ```js
 searhInput.addEventListener('click', myInput);
@@ -72,3 +72,23 @@ searchInput.onfocus = function () {};
 ```
 The difference is with the 2nd version multiple events can not be associated with an element as they will be overwritten. 
 
+I also learnt if you don't want the browser's default dropdown for datalists you leave the value for the input's list attibute as an empty string.
+I was proud of my hover state on my employee divs. I had so much fun creating them.
+```css
+    .employee:hover .details .city,
+    .employeeData:hover .details .city {
+        transform: scale(0.8) translate(44px, -5px);
+        letter-spacing: 0.1rem;
+    }
+
+    .employee:hover .image,
+    .employeeData:hover .image {
+        transform: scale(0.8) translate(-21px, -46px);
+    }
+```
+
+### Continued Development
+
+If I don't nail my keyup function then better understanding on creating a keyup event for a datalist and it's options. I absolutely want to continue growing with my javascript skills. 
+
+### Resources
