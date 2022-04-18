@@ -10,8 +10,8 @@ Communicating with APIs allows you to work with microservices and with vast data
 ## Table of contents
 - [Overview](#overview)
   - [About this project](#about-this-project)
-  - [Screenshot](#screenshot) Coming Soon
-  - [Link](#links) Coming Soon
+  - [Screenshot](#screenshot)
+  - [Link](#links)
 - [Process](#my-process) Coming Soon
   - [Technologies used](#technologies-used) Coming Soon
   - [What I learned](#what-i-learned) Coming Soon
@@ -23,6 +23,9 @@ Communicating with APIs allows you to work with microservices and with vast data
 ## Overview
   
 ### About this project
+
+### Screenshot of my project 8 desktop
+![](img/screenShot-project-8.jpg)
 
 **Using photos and information that the API provides. I will display 12 users, along with some basic information:**
 - Image
@@ -40,5 +43,22 @@ Users should be able to:
 - **Exceeds**: Add a way to filter the directory by name. To do this, 	I will need to request a random user nationality that will only return data in the English alphabet. 
 - **Exceeds**: Add a way to move back and forth between employee detail windows when the modal window is open.
 
+### Live Link
+-- Live Site URL: [Project 8 Awesome Employee Directory](https://samatkinsonmodeste.github.io/Project-8-API-Employee-Directory/)
 
-![](img/screenShot-project-8.jpg)
+## My Process
+First, I read through all the requirements for this project.
+Then I saved all the links provided in my browser's favourites.
+I then used my best friend Google to google how to do some of the extras I wanted to add.
+I would like to say when it came to coding, I planned every step, so not the case! 😀
+I start by experimenting with the css as well as the javascript, and then when I felt like I had a feel for things, I organically transition into the actual code of the project.
+### Technoliges Used
+-- Semantic HTML5 markup
+-- CSS Grid
+-- CSS Flexbox
+-- SVG
+-- JavaScript
+-- Fetch [Random User Generator](https://randomuser.me/) - API of Random Users
+-- Photoshop - Created my own favicon
+-- Favicon[Favicon Generator](https://www.favicon-generator.org/) - The Favicon Generator App where I upload my created favicon
+
