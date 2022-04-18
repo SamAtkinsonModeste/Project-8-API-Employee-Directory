@@ -17,7 +17,7 @@ Communicating with APIs allows you to work with microservices and with vast data
   - [What I learned](#what-i-learned) 
   - [Continued development](#continued-development) 
   - [Useful resources](#useful-resources) 
-- [Author](#author) Coming Soon
+- [Author](#author) 
 - [Acknowledgments](#acknowledgments) Coming Soon
 
 ## Overview
@@ -97,3 +97,10 @@ If I don't nail my keyup function then better understanding on creating a keyup 
 - [Creating a Lightbox Tutorial by Coding in Public](https://www.youtube.com/watch?v=_h6iT2UnyVs) - I was so grateful to find this little gem. Not only did it help me with my modal, but it has also had some great CSS nuggets that I incorporated
 into my CSS. For example, I loved what he did with a forEach on all the buttons. This was a gold mine of learning.
 - [The W3School Customising Scrollbars](https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp) - If it weren't for this find, my scrollbar for my options of the datalist would have looked very ugly 🤣
+
+
+## Author
+- Team Treehouse - [samanthaatkinson](https://www.teamtreehouse.com/samanthaatkinson)
+- Twitter - [@sammodeste1](https://www.twitter.com/@sammodeste1)
+- LinkedIn - [sam-atkinson-modeste](https://www.linkedin.com/<<sam-atkinson-modeste>>)
+- GitHub - [SamAtkinsonModeste](https://www.github.com/SamAtkinsonModeste)
