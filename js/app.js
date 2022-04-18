@@ -1,5 +1,8 @@
 let employees=[];
 let employeesList =[];
+let matchedOptions= [];
+let matchedNames = [];
+let noMatchNames = [];
 let dataOptions;
 let activeEmployee;
 const main = document.querySelector('main');
@@ -70,7 +73,9 @@ fetch(randomUsersUrl)
   //-------------------------------
   //RESET CLOSE CLICK EVENT FUNCTION
   //------------------------------
- const focusClose = (event) => {
+
+  //FOCUS CLOSE EVENT
+ const focusClose = event => {
     label.classList.remove('input-active');
             dataList.style.display = "none";
             main.classList.remove("main-search");
@@ -78,32 +83,65 @@ fetch(randomUsersUrl)
             searchInput.value = " ";
             
             let boxsDetails = employeesGrid.querySelectorAll('.employee');
-            console.log(boxsDetails);
+            // console.log(boxsDetails);
             boxsDetails.forEach(detailBox => {
-                const boxChild = detailBox; //EMPLOYEE DIV
-                boxChild.style.display = "flex";
-                  boxChild.classList.remove('employeeData');
-                  console.log(boxChild);
-               });
+                let boxChild = detailBox; //EMPLOYEE DIV
+                if (boxChild.classList.contains("employeeData")) {
+                    boxChild.classList.remove('employeeData');
+                } 
+                
+                if(boxChild.style.display === "none") {
+                    boxChild.style.display = "flex";
+                }
             
+                //   console.log(boxChild);
+               });
+
  };
 
 
- const keyUpClose = (event) => {
-     const optionItems = dataList.querySelectorAll('.autocomplete-list');
+ //KEYUP CLOSE EVENT
+ const keyUpClose = (event) =>  {
+    const emptyArrays = arr => arr.length = 0;
+    const keyUpEmployees = employeesGrid.querySelectorAll('.employee');
+    const names = document.querySelectorAll('.details .firstName');
+    let optionItems = dataList.querySelectorAll('option');
+
+    console.log(names, optionItems, keyUpEmployees, matchedOptions, matchedNames);
+    main.classList.remove('main-search');
+    searchInput.value = " ";
+    label.classList.remove('input-active');
+    employeesGrid.id ="employees-grid";
+    emptyArrays(matchedOptions);
+    emptyArrays(matchedNames);
+    emptyArrays(noMatchNames);
+    console.log(matchedOptions);
+    console.log(matchedNames);
     optionItems.forEach(optionItem => {
-        optionItem.classList.remove("hide");
-        optionItem.classList.remove("optionMatch");
+        optionItem.classList.remove('hide', 'optionMatch');
+        optionItem.removeAttribute('id');
+            console.log(optionItem);
 
-       });
- };
+        
+        
+    });
+
+    keyUpEmployees.forEach(employee => {
+        employee.classList.remove('employeeData');
+        employee.style.display = "flex";
+    });
+    
+
+};
+
+
 
 
   
   //--------------------------
   //FOCUS EVENT FUNCTION
   //---------------------------
-  searchInput.onfocus = () => {
+  const focusInput = (event) => {
       dataList.style.display = "block";
      const nameOpts = dataList.querySelectorAll('option');
     //  console.log(nameOpts);
@@ -113,7 +151,7 @@ fetch(randomUsersUrl)
      
 
      nameOpts.forEach(nameOpt => {
-           nameOpt.addEventListener('click', ()=> {
+           nameOpt.onclick = () => {
                nameOpt.id= "active";
                activeOption = nameOpt;
                searchInput.value = activeOption.value;
@@ -142,7 +180,8 @@ fetch(randomUsersUrl)
                                 }
                         
                     });
-           });
+           
+        } 
 
            
      });
@@ -157,56 +196,104 @@ fetch(randomUsersUrl)
   //--------------------------
   //KEYUP EVENT  FUNCTION
   //---------------------------
-  searchInput.oninput = () => {
-      
-        let text = searchInput.value.toLowerCase();
-
-        let optionItems = dataList.querySelectorAll('option');
-        // console.log(optionItems);
-        let matchedOption;
-      
+  
+  const  searchInputKeyUp = (event) => {
+    // dataList.style.display = "block";
+    let text = searchInput.value.toLowerCase();
+      let optionItems = dataList.querySelectorAll('option');
+       // console.log(optionItems);
         const names = document.querySelectorAll('.details .firstName');
-        // console.log(searchInput);
-        console.log(names);
+        // console.log(names);
 
         optionItems.forEach(optionItem => {
-            let optionName = optionItem.textContent.toLowerCase();
+           
+            let optionName = optionItem.value.toLowerCase();
             let optionBox = optionItem.closest('.autocomplete-list');
-
+             
             if( optionName.startsWith(text) ) { 
                 optionBox.classList.add('optionMatch');
-                matchedOption = optionBox.value;
-                console.log(matchedOption);
+                matchedOptions.push(optionBox);
+                console.log(matchedOptions);
+               
             } else {
                 optionBox.classList.add('hide');
             }
-            
         });
    
             names.forEach(name => {
-                 const textName = name.textContent;
-                console.log(textName);
+                const displayName = name;
+                 const textName = name.textContent.toLowerCase();
+                // console.log(textName);
                 const nameBox = name.closest('.employee');
 
-                if(textName.includes(text)) {
+                if(textName.startsWith(text)) {
                     nameBox.style.display = "flex"; 
+                    matchedNames.push(displayName);
+                   
+                    
                 } else {
-                    nameBox.style.display = "none"; 
+                    noMatchNames.push(nameBox);
+                   
                 }
 
-                
+                console.log(nameBox);
             });
 
+            console.log(matchedNames);
+            console.log(matchedOptions);
+            console.log(noMatchNames);
+               matchedOptions.forEach(matchedOption => {
+                   matchedOption.onclick = (evt) => {
+                       let chosen = evt.target;
+                        chosen = matchedOption;
+                        chosen.id = "active";
+                        searchInput.value = chosen.value;
+                        dataList.style.display = "none";
+                        label.classList.add('input-active');
+                       console.log(chosen);
+                       console.log(matchedNames);
 
-           
-                  
-            
+
+                       matchedNames.forEach(matchedName => {
+                             let chosenName = matchedName;
+                             let chosenParent = matchedName.parentElement.closest('.employee');
+                             
+                             console.log(chosenName);
+                             console.log(chosenParent);
+                             if (chosenName.textContent === chosen.value) {
+                                 console.log(chosenName);
+                                 console.log(chosenParent);
+                                 chosenParent.style.display = "flex";
+                                 chosenParent.classList.add('employeeData');
+                                 main.classList.add('main-search');
+                                 employeesGrid.id ="grid-search";
+                             } else {
+                                   chosenParent.style.display = "none";
+                             }
+                    });
+                     
+                   }
+               });
+
+              
+               noMatchNames.forEach(noMatch => {
+                   noMatch.style.display = "none";
+               });
             closeSearch.addEventListener('click', keyUpClose);
+            
+ 
+ 
+}; 
+
+
+
+            
            
+           
+         
 
 
 
-  };
 
 
 
@@ -309,8 +396,8 @@ function displayModal(index) {
 //OVERLAY & SEARCH EVENT LISTENERS
 //---------------------------------------------------------
 overlay.addEventListener('click', modalDisplayOverlayClose);
-// searchInput.addEventListener('focus', searchInputFocus);
-// searchInput.addEventListener('keyup', searchInputKeyUp);
+searchInput.addEventListener('focus', focusInput);
+searchInput.addEventListener('keyup', searchInputKeyUp);
 
 
 
