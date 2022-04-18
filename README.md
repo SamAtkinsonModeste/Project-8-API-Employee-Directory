@@ -92,3 +92,8 @@ I was proud of my hover state on my employee divs. I had so much fun creating th
 If I don't nail my keyup function then better understanding on creating a keyup event for a datalist and it's options. I absolutely want to continue growing with my javascript skills. 
 
 ### Resources
+- [Demo Of Fetch User Generator](https://codepen.io/dimitri4d/pen/qVKRrR) - This gave me an idea of what I was aiming for with my javascript as well as another approach of how to display random generated data.
+- [Article from the DEV Community by Siddhant Jaiswal](https://dev.to/siddev/customise-datalist-45p0) - This was a great article that opened my options up on not creating a generic search functionality.
+- [Creating a Lightbox Tutorial by Coding in Public](https://www.youtube.com/watch?v=_h6iT2UnyVs) - I was so grateful to find this little gem. Not only did it help me with my modal, but it has also had some great CSS nuggets that I incorporated
+into my CSS. For example, I loved what he did with a forEach on all the buttons. This was a gold mine of learning.
+- [The W3School Customising Scrollbars](https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp) - If it weren't for this find, my scrollbar for my options of the datalist would have looked very ugly 🤣
