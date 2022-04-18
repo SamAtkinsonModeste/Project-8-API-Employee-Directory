@@ -41,3 +41,4 @@ Users should be able to:
 - **Exceeds**: Add a way to move back and forth between employee detail windows when the modal window is open.
 
 
+![](img/screenShot-project-8.jpg)
