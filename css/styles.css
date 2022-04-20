@@ -125,6 +125,11 @@ CONTAINERS
 
     }
 
+    .employee-container {
+        height: 175px;
+        /* border: solid 1px red; */
+    }
+
     .employee,
     .employeeData {
         display: flex;
@@ -172,7 +177,7 @@ CONTAINERS
 SEARCH CLASSES
 **********************************/
 
-    #grid-search {
+    #employeesFound-grid {
         grid-template-columns: 1fr;
     }
 
@@ -218,7 +223,7 @@ OVERLAY'S MODAL CONTAINERS
     
     }
 
-    #modal-close {
+   .modal-close {
         z-index: 50;
         width: 30px;
         height: 30px;
@@ -385,9 +390,7 @@ ARROWS FOR MODAL NEXT AND BACK
 /*********************************
 HOVER STATE FOR EMPLYEES
 *********************************/
-
-    .employee:hover,
-    .employeeData:hover {
+    .employee-container:hover .employee {
         transform: scale(1.2);
         width: 150px;
         align-self: center;
@@ -397,32 +400,27 @@ HOVER STATE FOR EMPLYEES
     }
 
 
-    .employee:hover .details,
-    .employeeData:hover .details {
+    .employee-container:hover .details {
         transform: scale(0.8) translate(-84px, -1px);
     }
 
-    .employee:hover .details .name,
-    .employeeData:hover .details .name {
+    .employee-container:hover .details .name {
         transform: scale(1.1) translate(49px, -10px);
         margin: 28px 6px 28px 3px;
         font-size: 1.1rem;
     }
 
-    .employee:hover .details .email,
-    .employeeData:hover .details .email {
+    .employee-container:hover  .details .email {
         transform: scale(0.8) translate(-14px, -8px);
     }
 
 
-    .employee:hover .details .city,
-    .employeeData:hover .details .city {
+    .employee-container:hover .details .city {
         transform: scale(0.8) translate(44px, -5px);
         letter-spacing: 0.1rem;
     }
 
-    .employee:hover .image,
-    .employeeData:hover .image {
+    .employee-container:hover .image {
         transform: scale(0.8) translate(-21px, -46px);
     }
 
@@ -681,16 +679,16 @@ MAIN SELECTED
   /************************
   HOVER STATE FOR EMPLYEE
   *************************/
-    .employee:hover .details .email {
+    .employee-container:hover .details .email {
         transform: scale(0.7) translate(-39px, -17px);
     }
 
-    .employee:hover .details .name {
+    .employee-container:hover .details .name {
         transform: scale(1.1) translate(29px, -10px);
     
     }
 
-    .employee:hover .details .city {
+    .employee-container:hover .details .city {
         transform: scale(0.8) translate(29px, -26px);
     }
 
@@ -728,8 +726,8 @@ MEDIA QUERY 1024PX
         margin: 350px auto 30px;
     }
     
-    .employeeData {
-        width: 400px;
+    .employee {
+        width: 330px;
         align-self: center;
         margin: auto;
     }
@@ -758,10 +756,17 @@ MEDIA QUERY 1024PX
         font-size: 1.6rem;
     }
 
+   
+    
+
     #employees-grid {
         grid-template-columns: repeat(3, minmax(250px, 1fr));
         gap:10px;
     }
+
+    .grid-search {
+        grid-template-columns: 1fr;
+    } 
 
     .search {
         width: 400px;
