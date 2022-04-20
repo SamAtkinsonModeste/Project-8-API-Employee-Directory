@@ -1,9 +1,4 @@
-let employees=[];
-let employeesList =[];
-let matchedOptions= [];
-let matchedNames = [];
-let noMatchNames = [];
-let dataOptions;
+let employees =[];
 let activeEmployee;
 const main = document.querySelector('main');
 const employeesGrid = document.getElementById('employees-grid');
@@ -44,7 +39,8 @@ fetch(randomUsersUrl)
           let email = employee.email;
         
           employeeHTML += `
-          <div class="employee" data-index="${index}">
+          <div class="employee-container" data-index="${index}">
+          <div class="employee">
           <div class="image"> <img src="${image}"> </div>
           <div class="details">
           <h2 class="name"> <span class="firstName">${name.first} ${name.last}</h2>
@@ -52,6 +48,8 @@ fetch(randomUsersUrl)
           <p class="city">${city}</p>
           </div>
           </div>
+          </div>
+    
           `;
            /**for my generated option elements*/
     //for each value and text of my option elements insert the employee name variables
@@ -75,77 +73,25 @@ fetch(randomUsersUrl)
   //------------------------------
 
   //FOCUS CLOSE EVENT
- const focusClose = event => {
-    label.classList.remove('input-active');
+ const keyUpClose = event => {
+           label.classList.remove('input-active');
             dataList.style.display = "none";
             main.classList.remove("main-search");
-            employeesGrid.id ="employees-grid";
+            employeesGrid.id="employees-grid";
             searchInput.value = " ";
-            
-            let boxsDetails = employeesGrid.querySelectorAll('.employee');
-            // console.log(boxsDetails);
-            boxsDetails.forEach(detailBox => {
-                let boxChild = detailBox; //EMPLOYEE DIV
-                if (boxChild.classList.contains("employeeData")) {
-                    boxChild.classList.remove('employeeData');
-                } 
-                
-                if(boxChild.style.display === "none") {
-                    boxChild.style.display = "flex";
-                }
-            
-                //   console.log(boxChild);
-               });
-
+            filterEmployees()
  };
-
-
- //KEYUP CLOSE EVENT
- const keyUpClose = (event) =>  {
-    const emptyArrays = arr => arr.length = 0;
-    const keyUpEmployees = employeesGrid.querySelectorAll('.employee');
-    const names = document.querySelectorAll('.details .firstName');
-    let optionItems = dataList.querySelectorAll('option');
-
-    console.log(names, optionItems, keyUpEmployees, matchedOptions, matchedNames);
-    main.classList.remove('main-search');
-    searchInput.value = " ";
-    label.classList.remove('input-active');
-    employeesGrid.id ="employees-grid";
-    emptyArrays(matchedOptions);
-    emptyArrays(matchedNames);
-    emptyArrays(noMatchNames);
-    console.log(matchedOptions);
-    console.log(matchedNames);
-    optionItems.forEach(optionItem => {
-        optionItem.classList.remove('hide', 'optionMatch');
-        optionItem.removeAttribute('id');
-            console.log(optionItem);
-
-        
-        
-    });
-
-    keyUpEmployees.forEach(employee => {
-        employee.classList.remove('employeeData');
-        employee.style.display = "flex";
-    });
-    
-
-};
-
-
-
-
   
   //--------------------------
   //FOCUS EVENT FUNCTION
   //---------------------------
   const focusInput = (event) => {
       dataList.style.display = "block";
-     const nameOpts = dataList.querySelectorAll('option');
+      const nameOpts = dataList.querySelectorAll('option');
     //  console.log(nameOpts);
-     let activeOption;
+      employeesGrid.id="employees-grid";
+      main.classList.remove('main-search');
+      let activeOption;
 
 
      
@@ -158,176 +104,79 @@ fetch(randomUsersUrl)
                dataList.style.display = "none";
                label.classList.add('input-active');
                console.log(activeOption);
-            const detailBoxs = employeesGrid.querySelectorAll('.employee .name');
+               filterEmployees();
+               employeesGrid.id = 'employeesFound-grid';
+               main.classList.add('main-search');
+
+           };
+     });
+};
+            
 
                 
-                    detailBoxs.forEach(name => {
-                        const textName = name.textContent;
-                        const textNameParent = name.closest('.employee');
-
-                                if (textName.includes(activeOption.value)) {
-                                    console.log(textName);
-                                    console.log(textNameParent);
-                                    textNameParent.style.display = "flex";
-                                    textNameParent.classList.add('employeeData');
-                                    main.classList.add('main-search');
-                                    employeesGrid.id ="grid-search";
-                                    activeOption.removeAttribute('id');
-                                    console.log(activeOption);
-                                            
-                                } else {
-                                    textNameParent.style.display = "none";
-                                }
-                        
-                    });
+                  
            
-        } 
-
-           
-     });
-
-     
-        closeSearch.addEventListener('click', focusClose);
-            
-  };
-  
-  
-
+        
   //--------------------------
-  //KEYUP EVENT  FUNCTION
+  //FILTER  FUNCTION
   //---------------------------
   
-  const  searchInputKeyUp = (event) => {
-    // dataList.style.display = "block";
-    let text = searchInput.value.toLowerCase();
+  const  filterEmployees = () => {
+    let query = searchInput.value.toLowerCase();
       let optionItems = dataList.querySelectorAll('option');
        // console.log(optionItems);
-        const names = document.querySelectorAll('.details .firstName');
+        const names = document.querySelectorAll('.employee-container');
         // console.log(names);
-
-        optionItems.forEach(optionItem => {
-           
+      
+        optionItems.forEach((optionItem, i) => {
             let optionName = optionItem.value.toLowerCase();
-            let optionBox = optionItem.closest('.autocomplete-list');
-             
-            if( optionName.startsWith(text) ) { 
-                optionBox.classList.add('optionMatch');
-                matchedOptions.push(optionBox);
-                console.log(matchedOptions);
+            
+            if( optionName.includes(query) ) { 
+                optionItem.classList.add('optionMatch');
+                optionItem.classList.remove('hide');
+                names[i].style.display = "initial";
                
             } else {
-                optionBox.classList.add('hide');
+                optionItem.classList.add('hide');
+                optionItem.classList.remove('optionMatch');
+                names[i].style.display = 'none';
             }
         });
-   
-            names.forEach(name => {
-                const displayName = name;
-                 const textName = name.textContent.toLowerCase();
-                // console.log(textName);
-                const nameBox = name.closest('.employee');
 
-                if(textName.startsWith(text)) {
-                    nameBox.style.display = "flex"; 
-                    matchedNames.push(displayName);
-                   
-                    
-                } else {
-                    noMatchNames.push(nameBox);
-                   
-                }
-
-                console.log(nameBox);
-            });
-
-            console.log(matchedNames);
-            console.log(matchedOptions);
-            console.log(noMatchNames);
-               matchedOptions.forEach(matchedOption => {
-                   matchedOption.onclick = (evt) => {
-                       let chosen = evt.target;
-                        chosen = matchedOption;
-                        chosen.id = "active";
-                        searchInput.value = chosen.value;
-                        dataList.style.display = "none";
-                        label.classList.add('input-active');
-                       console.log(chosen);
-                       console.log(matchedNames);
-
-
-                       matchedNames.forEach(matchedName => {
-                             let chosenName = matchedName;
-                             let chosenParent = matchedName.parentElement.closest('.employee');
-                             
-                             console.log(chosenName);
-                             console.log(chosenParent);
-                             if (chosenName.textContent === chosen.value) {
-                                 console.log(chosenName);
-                                 console.log(chosenParent);
-                                 chosenParent.style.display = "flex";
-                                 chosenParent.classList.add('employeeData');
-                                 main.classList.add('main-search');
-                                 employeesGrid.id ="grid-search";
-                             } else {
-                                   chosenParent.style.display = "none";
-                             }
-                    });
-                     
-                   }
-               });
-
-              
-               noMatchNames.forEach(noMatch => {
-                   noMatch.style.display = "none";
-               });
-            closeSearch.addEventListener('click', keyUpClose);
+        closeSearch.addEventListener('click', keyUpClose);
+}
             
- 
- 
-}; 
-
-
-
-            
-           
-           
-         
-
-
-
-
-
-
  //--------------------------
   //OVERLAY EVENT  FUNCTION
   //---------------------------
  
-const modalDisplayOverlayClose = event => {
+const modalButtons = event => {
 //CLOSE OVERLAY
     if(event.target.id === "modal-close") {
         overlay.classList.remove('activeO');
     }
 
     //LEFT ARROW EVENT
-    if(event.target.id === "arrow-left" && activeEmployee > 0) {
+    if(event.target.id === "arrow-left") {
        activeEmployee --;
        displayModal(activeEmployee);
    } 
 
       //RIGHT ARROW EVENT
-    if(event.target.id === "arrow-right" && activeEmployee < employees.length - 1) {
+    if(event.target.id === "arrow-right") {
             activeEmployee ++;
             displayModal(activeEmployee);
     } 
 
 
-     //HIDE LEFT ARROW 
-      if (event.target.id === "arrow-left" && activeEmployee === 0) {
-             event.target.style.visibility = "hidden";
+     //HIDE LEFT & RIGHT ARROW 
+      if (activeEmployee === 0) {
+              console.log(activeEmployee);
+             document.querySelector('#arrow-left').style.visibility = "hidden";
+       } else if(activeEmployee === employees.length -1) {
+        document.querySelector('#arrow-right').style.visibility = "hidden";
        }
-       //HIDE RIGHT ARROW 
-    if(event.target.id === "arrow-right" && activeEmployee === employees.length - 1) {
-             event.target.style.visibility = "hidden";
-       }
+      
 };
 
 
@@ -372,10 +221,15 @@ function displayModal(index) {
     `;
     
     
+    
     activeEmployee = parseInt(index);
     overlay.classList.add("activeO");
-    overlay.innerHTML = modalHTML;
+    overlay.innerHTML = modalHTML; 
    
+    if(activeEmployee === 0) {
+         overlay.querySelector('#arrow-left').style.visibility = "hidden";
+       
+    }
     
 }
 
@@ -384,8 +238,7 @@ function displayModal(index) {
   //EMPLOYEESGIRD EVENT LISTENER
   employeesGrid.addEventListener('click', evt => {
         if (evt.target !== employeesGrid){
-             const employeeBox = evt.target.closest(".employee");
-             const index = employeeBox.getAttribute("data-index");
+             const index = evt.target.closest('.employee-container').getAttribute("data-index");
              displayModal(index);
         }
   });
@@ -395,9 +248,9 @@ function displayModal(index) {
 //----------------------------------------------------------
 //OVERLAY & SEARCH EVENT LISTENERS
 //---------------------------------------------------------
-overlay.addEventListener('click', modalDisplayOverlayClose);
+overlay.addEventListener('click', modalButtons);
 searchInput.addEventListener('focus', focusInput);
-searchInput.addEventListener('keyup', searchInputKeyUp);
+searchInput.addEventListener('input', filterEmployees);
 
 
 
