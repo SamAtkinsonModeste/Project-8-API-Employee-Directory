@@ -110,6 +110,6 @@ into my CSS. For example, I loved what he did with a forEach on all the buttons.
 ## Acknowledgments
 - [Brian Jensen](https://teamtreehouse.com/brianjensen) at Treehouse has always encouraged me with learning JavaScript. I don't think I would have gotten to this point in my learning where for once, I wasn't absolutely terrified creating a app.js file, if it wasn't for his support.
 
-- [Rohlad van Merde](https://teamtreehouse.com/rohald89) also at Treehouse has been my soundboard for this project. He also started me down the path of using a datalist for my search functionality.
+- [Rohlad von Merode](https://teamtreehouse.com/rohald89) also at Treehouse has been my soundboard for this project. He also started me down the path of using a datalist for my search functionality.
 
 Seeing their reaction to my project and the compliments they gave me, has inspired me to push myself well outside my comfort zone with JavaScript.
