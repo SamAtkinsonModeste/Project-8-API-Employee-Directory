@@ -141,6 +141,8 @@ fetch(randomUsersUrl)
                 optionItem.classList.remove('optionMatch');
                 names[i].style.display = 'none';
             }
+
+            
         });
 
         closeSearch.addEventListener('click', keyUpClose);
@@ -229,9 +231,9 @@ function displayModal(index) {
     if(activeEmployee === 0) {
          overlay.querySelector('#arrow-left').style.visibility = "hidden";
        
+    } else if(activeEmployee ===  employees.length -1)
+      overlay.querySelector('#arrow-right').style.visibility = "hidden";
     }
-    
-}
 
   
   
